@@ -1,3 +1,3 @@
 Este repositorio es compartido con:
-Rueda Cabrera Pedro
+Rueda Cabrera Pedro y
 Westerhof Rodríguez Guillermo Alejandro
