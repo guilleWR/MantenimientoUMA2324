@@ -210,8 +210,9 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
                 }
 
                 p = p.getNext(); // Después de que q recorre toda la lista, mover p al siguiente nodo.
-                if (p != null) q = p.getNext(); // Reiniciar q al siguiente de p para la nueva posición de p.
             }
+
+
         } while (wasSwapped); // Repetir mientras se sigan haciendo intercambios.
     }
 
