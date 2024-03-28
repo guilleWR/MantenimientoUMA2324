@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoubleLinkedList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit5-mps-uma</a> &gt; <a href="index.source.html" class="el_package">es.practica2</a> &gt; <span class="el_source">DoubleLinkedList.java</span></div><h1>DoubleLinkedList.java</h1><pre class="source lang-java linenums">package es.practica2;
+
+public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
+
+    private LinkedNode&lt;T&gt; first;
+    private LinkedNode&lt;T&gt; last;
+    private int size;
+
+<span class="fc" id="L9">    public DoubleLinkedList() {</span>
+<span class="fc" id="L10">        this.first = null;</span>
+<span class="fc" id="L11">        this.last = null;</span>
+<span class="fc" id="L12">        this.size = 0;</span>
+<span class="fc" id="L13">    }</span>
+
+    //insertar u3n nuevo nodo antes del primer nodo existente en la lista
+        @Override
+        public void prepend(T value) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">            if (this.size == 0) { //no hay nodo</span>
+<span class="fc" id="L19">                LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, null);</span>
+<span class="fc" id="L20">                this.first = elem;</span>
+<span class="fc" id="L21">                this.last = elem;</span>
+<span class="fc" id="L22">                this.size = 1;</span>
+<span class="fc" id="L23">            }</span>
+            else {
+<span class="fc" id="L25">                LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, this.first);</span>
+<span class="fc" id="L26">                this.first.setPrevious(elem);</span>
+<span class="fc" id="L27">                this.first = elem;</span>
+<span class="fc" id="L28">                this.size++;</span>
+            }
+
+<span class="fc" id="L31">        }</span>
+
+    @Override
+    public void append(T value) {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (this.size == 0) { //no hay nodo</span>
+<span class="fc" id="L36">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, null);</span>
+<span class="fc" id="L37">            this.first = elem;</span>
+<span class="fc" id="L38">            this.last = elem;</span>
+<span class="fc" id="L39">            this.size = 1;</span>
+<span class="fc" id="L40">        }</span>
+        else {
+<span class="fc" id="L42">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, this.last, null);</span>
+<span class="fc" id="L43">            this.last.setNext(elem);</span>
+<span class="fc" id="L44">            this.last = elem;</span>
+<span class="fc" id="L45">            this.size++;</span>
+        }
+<span class="fc" id="L47">    }</span>
+
+    @Override
+    public void deleteFirst() {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (size == 0) {</span>
+<span class="fc" id="L52">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
+        }
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (this.size == 1) {</span>
+<span class="fc" id="L55">            this.first = null;</span>
+<span class="fc" id="L56">            this.last = null;</span>
+<span class="fc" id="L57">            this.size = 0;</span>
+<span class="fc" id="L58">        }</span>
+        else {
+<span class="fc" id="L60">            LinkedNode&lt;T&gt; aux = this.first.getNext();</span>
+<span class="fc" id="L61">            aux.setPrevious(null);</span>
+<span class="fc" id="L62">            this.first = aux;</span>
+<span class="fc" id="L63">            this.size--;</span>
+        }
+<span class="fc" id="L65">    }</span>
+
+    @Override
+    public void deleteLast() {
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (size == 0) {</span>
+<span class="fc" id="L70">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
+        }
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (size == 1){</span>
+<span class="fc" id="L73">            this.first = null;</span>
+<span class="fc" id="L74">            this.last = null;</span>
+<span class="fc" id="L75">            size = 0;</span>
+<span class="fc" id="L76">        }else {</span>
+<span class="fc" id="L77">            this.last = last.getPrevious();</span>
+<span class="fc" id="L78">            last.setNext(null);</span>
+<span class="fc" id="L79">            size--;</span>
+        }
+<span class="fc" id="L81">    }</span>
+
+    @Override
+    public T first() {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        return first != null ? first.getItem() : null;</span>
+    }
+
+    @Override
+    public T last() {
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        return last != null ? last.getItem() : null;</span>
+    }
+
+    @Override
+    public int size() {
+<span class="fc" id="L95">        return size;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
