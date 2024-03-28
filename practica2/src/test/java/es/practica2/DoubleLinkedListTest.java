@@ -11,8 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+
 public class DoubleLinkedListTest<T> {
 
+    //primera sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados al metodo constructor")
     class ConstructorTests {
@@ -61,6 +63,7 @@ public class DoubleLinkedListTest<T> {
     //end tests constructor
 
 
+    //primera sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados a los metodos getter")
     class GettersTest {
@@ -125,6 +128,7 @@ public class DoubleLinkedListTest<T> {
     //end tests getters
 
 
+    //primera sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados al metodo prepend")
     class PrependTest {
@@ -221,6 +225,7 @@ public class DoubleLinkedListTest<T> {
     //end tests prepend
 
 
+    //primera sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados al metodo append")
     class AppendTest {
@@ -318,6 +323,7 @@ public class DoubleLinkedListTest<T> {
     //end tests append
 
 
+    //primera sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados al metodo deleteFirst")
     class DeleteFirstTest {
@@ -416,6 +422,8 @@ public class DoubleLinkedListTest<T> {
     }
     //end tests deleteFirst
 
+
+    //primera sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados al metodo deleteLast")
     class DeleteLastTest {
