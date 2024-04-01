@@ -34,7 +34,7 @@ public class NodeLinkedTest<T>{
     
     @Test
     @DisplayName("El metodo devuelve el Item del nodo asociado")
-    public void getItem_DevuelveElItemDelNodo(){
+    public void getItem_NodeConItem_DevuelveElItemDelNodo(){
         //Arrange 
         Object aux = new Object();
         LinkedNode<Object> node1 = new LinkedNode<Object>(aux, null, null);
@@ -44,7 +44,7 @@ public class NodeLinkedTest<T>{
 
     @Test
     @DisplayName("El metodo actualiza el Item del nodo asociado")
-    public void setItem_ActualizaElItemDelNodo(){
+    public void setItem_NodeConItem_ActualizaElItemDelNodo(){
         //Arrange 
         Object aux = new Object();
         Object aux2 = new Object();
@@ -57,7 +57,7 @@ public class NodeLinkedTest<T>{
 
     @Test
     @DisplayName("El metodo devuelve el nodo Previous del nodo asociado")
-    public void getPrevious_DevuelveElPreviousDelNodo(){
+    public void getPrevious_NodeConPrevious_DevuelveElPreviousDelNodo(){
         //Arrange 
         Object aux = new Object();
         LinkedNode<Object> node1 = new LinkedNode<Object>(aux, null, null);
@@ -68,7 +68,7 @@ public class NodeLinkedTest<T>{
 
     @Test
     @DisplayName("El metodo actualiza el Previous del nodo asociado")
-    public void setPrevious_ActualizaElPreviousDelNodo(){
+    public void setPrevious_NodeConPrevious_ActualizaElPreviousDelNodo(){
         //Arrange 
         Object aux = new Object();
         LinkedNode<Object> node1 = new LinkedNode<Object>(aux, null, null);
@@ -81,7 +81,7 @@ public class NodeLinkedTest<T>{
 
     @Test
     @DisplayName("El metodo devuelve el nodo Nest del nodo asociado")
-    public void getNext_DevuelveElNextDelNodo(){
+    public void getNext_NodoConNext_DevuelveElNextDelNodo(){
         //Arrange 
         Object aux = new Object();
         LinkedNode<Object> node1 = new LinkedNode<Object>(aux, null, null);
@@ -92,7 +92,7 @@ public class NodeLinkedTest<T>{
 
     @Test
     @DisplayName("El metodo actualiza el next del nodo asociado")
-    public void setNext_ActualizaElNextDelNodo(){
+    public void setNext_NodoConNext_ActualizaElNextDelNodo(){
         //Arrange 
         Object aux = new Object();
         LinkedNode<Object> node1 = new LinkedNode<Object>(aux, null, null);
