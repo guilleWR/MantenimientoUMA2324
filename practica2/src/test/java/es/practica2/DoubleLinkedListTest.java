@@ -5,8 +5,10 @@
 package es.practica2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Comparator;
 
@@ -524,6 +526,171 @@ public class DoubleLinkedListTest<T> {
     }
     //end tests deleteLast
 
+
+    //COMIENZO SEGUNDA SESION TESTS
+
+    //segunda sesion (practica 2)
+    @Nested
+    @DisplayName("Tests dedicados al contains")
+    class ContainsTest {
+        @Test
+        @DisplayName("Si se llama al metodo contains y el parametro de busqueda es null lanza una excepcion")
+        public void Contains_ElValorABuscarEsNull_LanzaDoubleLinkedQueueException() {
+            // Arrange
+            DoubleLinkedList<T> list = new DoubleLinkedList<>();
+            T value = null;
+
+            //Act & Assert
+            assertThrows(DoubleLinkedQueueException.class, () -> list.contains(value));
+        }
+
+        @Test
+        @DisplayName("Si la lista esta vacia, y el parametro no es nulo, devuelve false porque no hay nada en la lista")
+        public void Contains_LaListaEstaVacia_DevuelveFalse() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "node1";
+
+            //Act
+            boolean result = list.contains(value);
+
+            //Act & Assert
+            assertFalse(result);
+        }
+
+        @Test
+        @DisplayName("La lista contiene elementos pero el elemento a buscar no esta en la lista, duelve false")
+        public void Contains_ListaContieneElementosPeroElementoABuscarNoEstaEnLaLista_DevuelveFalse() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value1 = "node1";
+            String value2 = "node2";
+            String value3 = "node3";
+            list.append(value1);
+            list.append(value2);
+            list.append(value3);
+            String valueToSearch = "node4";
+
+            //Act
+            boolean result = list.contains(valueToSearch);
+
+            //Act & Assert
+            assertFalse(result);
+        }
+
+
+        @Test
+        @DisplayName("La lista contiene elementos py el elemento a buscar si esta en la lista, duelve true")
+        public void Contains_ListaContieneElementosYElementoABuscarEstaEnLaLista_DevuelveTrue() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value1 = "node1";
+            String value2 = "node2";
+            String value3 = "node3";
+            list.append(value1);
+            list.append(value2);
+            list.append(value3);
+            String valueToSearch = "node2";
+
+            //Act
+            boolean result = list.contains(valueToSearch);
+
+            //Act & Assert
+            assertTrue(result);
+        }
+
+
+        @Test
+        @DisplayName("La lista contiene elementos duplicados y el elemento a buscar está en la lista, devuelve true")
+        public void Contains_ListaContieneElementosDuplicadosYElementoABuscarEstaEnLaLista_DevuelveTrue() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value1 = "node1";
+            list.append(value1);
+            list.append(value1); // Duplicado
+            String valueToSearch = "node1";
+
+            // Act
+            boolean result = list.contains(valueToSearch);
+
+            // Assert
+            assertTrue(result);
+        }
+
+        @Test
+        @DisplayName("El elemento a buscar estaba en la lista pero fue eliminado, devuelve false")
+        public void Contains_ElementoFueEliminado_DeveulveFalse() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value1 = "node1";
+            list.append(value1);
+            list.remove(value1); 
+
+            // Act   
+            boolean result = list.contains(value1);
+
+            // Assert
+            assertFalse(result);
+        }
+    }
+    //end tests contains
+
+    //segunda sesion (practica 2)
+    @Nested
+    @DisplayName("Tests dedicados al metodo Get")
+    class GetTest {
+        
+        @Test
+        @DisplayName("Si se llama al metodo get con un indice fuera de rango (numero negativo) lanza excepcion")
+        public void Get_ElIndiceEstaFueraDeRangoPorqueEsNegativo_LanzaIndexOutOfBoundsException() {
+            // Arrange
+            DoubleLinkedList<T> list = new DoubleLinkedList<>();
+            int index = -1;
+ 
+            //Act & Assert
+            assertThrows(IndexOutOfBoundsException.class, () -> list.get(index));
+        }
+
+
+        @Test
+        @DisplayName("Si se llama al metodo get con un indice fuera de rango (numero mayor que tamaño lista) lanza excepcion")
+        public void Get_ElIndiceEstaFueraDeRangoPorqueEsMayorAlNumeroDeElementos_LanzaIndexOutOfBoundsException() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value1 = "node1";
+            String value2 = "node2";
+            list.append(value1); //indice 0
+            list.append(value2); //indice 1
+            int index = 5;
+        
+            //Act & Assert
+            assertThrows(IndexOutOfBoundsException.class, () -> list.get(index));
+            
+        }
+
+
+        @Test
+        @DisplayName("Si se llama al metodo get con un indice dentro del rango devuelve el elemento")
+        public void Get_ElIndiceEstaDentroDelRango_DevuelveElElementoDeEseIndice() {
+            // Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value1 = "node1";
+            String value2 = "node2";
+            String value3 = "node3";
+            list.append(value1);
+            list.append(value2);
+            list.append(value3);
+            int index = 1;
+            String expectedResult = "node2";
+
+            //Act
+            String result = list.get(index);
+ 
+            //Act & Assert
+            assertEquals(expectedResult, result);
+        }
+    }
+
     //segunda sesion (practica 2)
     @Nested
     @DisplayName("Tests dedicados al metodo remove")
@@ -657,70 +824,148 @@ public class DoubleLinkedListTest<T> {
     @Nested
     @DisplayName("Tests dedicados al metodo sort")
     class sortTest {
+
         @Test
-        @DisplayName("Inserto una lista vacia que no se deberia modificar")
-        public void sort_ListaCon0Elementos_NoEsOrdenada(){
-            //Arrange 
+        @DisplayName("Una lista vacia no puede ordenarse y por lo tanto el tamaño")
+        public void sort_ListaVacia_MantieneTamañoCero(){
+            // Arrange 
             DoubleLinkedList<String> list = new DoubleLinkedList<>();
             Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
-            int expectedSize = 0;
-            //Act
+            // Act
             list.sort(alphabeticalComparator);
-            //Assert
-            assertEquals(expectedSize, list.size(),"No debe haber elementos en la lista"); 
-            assertThrows(IndexOutOfBoundsException.class, ()->list.get(0));
-           
+            // Assert
+            assertEquals(0, list.size(), "La lista vacía debe mantenerse sin elementos");
         }
 
         @Test
-        @DisplayName("Inserto una lista con un solo elemento que no puede ser ordenada")
-        public void sort_ListaCon1Elementos_NoEsOrdenada(){
-            //Arrange 
+        @DisplayName("Una lista vacia no puede ordenarse y por lo tanto el tamaño")
+        public void sort_ListaVacia_AccesoAElementoLanzaExcepcion(){
+            // Arrange 
             DoubleLinkedList<String> list = new DoubleLinkedList<>();
             Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
-            int expectedSize = 1;
+            list.sort(alphabeticalComparator); // Act implícito en la preparación para la prueba de excepción.
+            // Assert
+            assertThrows(IndexOutOfBoundsException.class, () -> list.get(0), "Acceder a un elemento en la lista vacía debe lanzar IndexOutOfBoundsException");
+        }
+
+        @Test
+        @DisplayName("sort_ListaConUnElemento_ElementoNoCambia")
+        public void sort_ListaConUnElemento_ElementoNoCambia(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
             list.append("value");
-            //Act
+            // Act
             list.sort(alphabeticalComparator);
-            //Assert
-            assertEquals(expectedSize, list.size(),"Debe haber un solo elemento en la lista"); 
-            assertEquals("value", list.get(0),"El unico elemento debería ser value");
-            
-           
+            // Assert
+            assertEquals("value", list.get(0), "El único elemento debería mantenerse como 'value'");
         }
 
         @Test
-        @DisplayName("Inserto una lista desordenada de elementos para ordenar")
-        public void sort_ListaConVariosElementosDesordenados_EsOrdenada(){
-            //Arrange 
+        @DisplayName("sort_ListaConUnElemento_MantieneTamañoCorrecto")
+        public void sort_ListaConUnElemento_MantieneTamañoCorrecto(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            list.append("value");
+            int expectedSize = 1;
+            // Act
+            list.sort(alphabeticalComparator);
+            // Assert
+            assertEquals(expectedSize, list.size(), "La lista debe contener un solo elemento");
+        }
+
+
+        @Test
+        @DisplayName("cuando la lista esta desordenada, se ordena correctamente")
+        public void sort_ListaDesordenada_PrimerElementoOrdenadoCorrectamente(){
+            // Arrange 
             DoubleLinkedList<String> list = new DoubleLinkedList<>();
             list.append("z_Zoro");
             list.append("e_");
             list.append("p_");
             Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
-            //Act
+            // Act
             list.sort(alphabeticalComparator);
-            //Assert
-            assertEquals("e_", list.get(0),"El primer elemento debería ser e_"); 
-            assertEquals("p_", list.get(1),"El segundo elemento debería ser p_"); 
-            assertEquals("z_Zoro", list.get(2),"El tercer elemento debería ser z_Zoro");
+            // Assert
+            assertEquals("e_", list.get(0), "El primer elemento debería ser e_ después de ordenar");
         }
 
         @Test
-        @DisplayName("Inserto una lista ya ordenada de elementos por lo que su orden no debe ser modificado")
-        public void sort_ListaConVariosElementosYaOrdenados_NoDebeVariarSuOrden(){
-            //Arrange 
+        @DisplayName("cuando la lista esta desordenada, se ordena correctamente")
+        public void sort_ListaDesordenada_SegundoElementoOrdenadoCorrectamente(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            list.append("z_Zoro");
+            list.append("e_");
+            list.append("p_");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            // Act
+            list.sort(alphabeticalComparator);
+            // Assert
+            assertEquals("p_", list.get(1), "El segundo elemento debería ser p_ después de ordenar");
+        }
+        
+        @Test
+        @DisplayName("cuando la lista esta desordenada, se ordena correctamente")
+        public void sort_ListaDesordenada_TercerElementoOrdenadoCorrectamente(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            list.append("z_Zoro");
+            list.append("e_");
+            list.append("p_");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            // Act
+            list.sort(alphabeticalComparator);
+            // Assert
+            assertEquals("z_Zoro", list.get(2), "El tercer elemento debería ser z_Zoro después de ordenar");
+        }
+
+
+        @Test
+        @DisplayName("cuando la lista esta ordenada no cambia")
+        public void sort_ListaYaOrdenada_PrimerElementoNoCambia(){
+            // Arrange 
             DoubleLinkedList<String> list = new DoubleLinkedList<>();
             list.append("e_");
             list.append("p_");
             list.append("z_Zoro");
             Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
-            //Act
+            // Act
             list.sort(alphabeticalComparator);
-            //Assert
-            assertEquals("e_", list.get(0),"El primer elemento debería ser e_"); 
-            assertEquals("p_", list.get(1),"El segundo elemento debería ser p_"); 
-            assertEquals("z_Zoro", list.get(2),"El tercer elemento debería ser z_Zoro");
+            // Assert
+            assertEquals("e_", list.get(0), "El primer elemento debería seguir siendo e_");
+        }
+
+        @Test
+        @DisplayName("cuando la lista esta ordenada no cambia")
+        public void sort_ListaYaOrdenada_SegundoElementoNoCambia(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            list.append("e_");
+            list.append("p_");
+            list.append("z_Zoro");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            // Act
+            list.sort(alphabeticalComparator);
+            // Assert
+            assertEquals("p_", list.get(1), "El segundo elemento debería seguir siendo p_");
+        }
+
+
+        @Test
+        @DisplayName("cuando la lista esta ordenada no cambia")
+        public void sort_ListaYaOrdenada_TercerElementoNoCambia(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            list.append("e_");
+            list.append("p_");
+            list.append("z_Zoro");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            // Act
+            list.sort(alphabeticalComparator);
+            // Assert
+            assertEquals("z_Zoro", list.get(2), "El tercer elemento debería seguir siendo z_Zoro");
         }
 
         
