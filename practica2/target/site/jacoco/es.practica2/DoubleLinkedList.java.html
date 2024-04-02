@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoubleLinkedList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit5-mps-uma</a> &gt; <a href="index.source.html" class="el_package">es.practica2</a> &gt; <span class="el_source">DoubleLinkedList.java</span></div><h1>DoubleLinkedList.java</h1><pre class="source lang-java linenums">package es.practica2;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoubleLinkedList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit5-mps-uma</a> &gt; <a href="index.source.html" class="el_package">es.practica2</a> &gt; <span class="el_source">DoubleLinkedList.java</span></div><h1>DoubleLinkedList.java</h1><pre class="source lang-java linenums">/*  Westerhof Rodríguez Guillermo Alejandro
+    Rueda Cabrera Pedro 
+*/
+
+package es.practica2;
+
+import java.util.Comparator;
 
 public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
 
@@ -6,93 +12,209 @@ public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
     private LinkedNode&lt;T&gt; last;
     private int size;
 
-<span class="fc" id="L9">    public DoubleLinkedList() {</span>
-<span class="fc" id="L10">        this.first = null;</span>
-<span class="fc" id="L11">        this.last = null;</span>
-<span class="fc" id="L12">        this.size = 0;</span>
-<span class="fc" id="L13">    }</span>
+<span class="fc" id="L15">    public DoubleLinkedList() {</span>
+<span class="fc" id="L16">        this.first = null;</span>
+<span class="fc" id="L17">        this.last = null;</span>
+<span class="fc" id="L18">        this.size = 0;</span>
+<span class="fc" id="L19">    }</span>
 
-    //insertar u3n nuevo nodo antes del primer nodo existente en la lista
-        @Override
-        public void prepend(T value) {
-<span class="fc bfc" id="L18" title="All 2 branches covered.">            if (this.size == 0) { //no hay nodo</span>
-<span class="fc" id="L19">                LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, null);</span>
-<span class="fc" id="L20">                this.first = elem;</span>
-<span class="fc" id="L21">                this.last = elem;</span>
-<span class="fc" id="L22">                this.size = 1;</span>
-<span class="fc" id="L23">            }</span>
-            else {
-<span class="fc" id="L25">                LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, this.first);</span>
-<span class="fc" id="L26">                this.first.setPrevious(elem);</span>
-<span class="fc" id="L27">                this.first = elem;</span>
-<span class="fc" id="L28">                this.size++;</span>
-            }
+    // insertar u3n nuevo nodo antes del primer nodo existente en la lista
+    @Override
+    public void prepend(T value) {
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (this.size == 0) { // no hay nodo</span>
+<span class="fc" id="L25">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, null);</span>
+<span class="fc" id="L26">            this.first = elem;</span>
+<span class="fc" id="L27">            this.last = elem;</span>
+<span class="fc" id="L28">            this.size = 1;</span>
+<span class="fc" id="L29">        } else {</span>
+<span class="fc" id="L30">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, this.first);</span>
+<span class="fc" id="L31">            this.first.setPrevious(elem);</span>
+<span class="fc" id="L32">            this.first = elem;</span>
+<span class="fc" id="L33">            this.size++;</span>
+        }
 
-<span class="fc" id="L31">        }</span>
+<span class="fc" id="L36">    }</span>
 
     @Override
     public void append(T value) {
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (this.size == 0) { //no hay nodo</span>
-<span class="fc" id="L36">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, null);</span>
-<span class="fc" id="L37">            this.first = elem;</span>
-<span class="fc" id="L38">            this.last = elem;</span>
-<span class="fc" id="L39">            this.size = 1;</span>
-<span class="fc" id="L40">        }</span>
-        else {
-<span class="fc" id="L42">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, this.last, null);</span>
-<span class="fc" id="L43">            this.last.setNext(elem);</span>
-<span class="fc" id="L44">            this.last = elem;</span>
-<span class="fc" id="L45">            this.size++;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (this.size == 0) { // no hay nodo</span>
+<span class="fc" id="L41">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, null, null);</span>
+<span class="fc" id="L42">            this.first = elem;</span>
+<span class="fc" id="L43">            this.last = elem;</span>
+<span class="fc" id="L44">            this.size = 1;</span>
+<span class="fc" id="L45">        } else {</span>
+<span class="fc" id="L46">            LinkedNode&lt;T&gt; elem = new LinkedNode&lt;T&gt;(value, this.last, null);</span>
+<span class="fc" id="L47">            this.last.setNext(elem);</span>
+<span class="fc" id="L48">            this.last = elem;</span>
+<span class="fc" id="L49">            this.size++;</span>
         }
-<span class="fc" id="L47">    }</span>
+<span class="fc" id="L51">    }</span>
 
     @Override
     public void deleteFirst() {
-<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (size == 0) {</span>
-<span class="fc" id="L52">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (size == 0) {</span>
+<span class="fc" id="L56">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
         }
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (this.size == 1) {</span>
-<span class="fc" id="L55">            this.first = null;</span>
-<span class="fc" id="L56">            this.last = null;</span>
-<span class="fc" id="L57">            this.size = 0;</span>
-<span class="fc" id="L58">        }</span>
-        else {
-<span class="fc" id="L60">            LinkedNode&lt;T&gt; aux = this.first.getNext();</span>
-<span class="fc" id="L61">            aux.setPrevious(null);</span>
-<span class="fc" id="L62">            this.first = aux;</span>
-<span class="fc" id="L63">            this.size--;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (this.size == 1) {</span>
+<span class="fc" id="L59">            this.first = null;</span>
+<span class="fc" id="L60">            this.last = null;</span>
+<span class="fc" id="L61">            this.size = 0;</span>
+<span class="fc" id="L62">        } else {</span>
+<span class="fc" id="L63">            LinkedNode&lt;T&gt; aux = this.first.getNext();</span>
+<span class="fc" id="L64">            aux.setPrevious(null);</span>
+<span class="fc" id="L65">            this.first = aux;</span>
+<span class="fc" id="L66">            this.size--;</span>
         }
-<span class="fc" id="L65">    }</span>
+<span class="fc" id="L68">    }</span>
 
     @Override
     public void deleteLast() {
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (size == 0) {</span>
-<span class="fc" id="L70">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (size == 0) {</span>
+<span class="fc" id="L73">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
         }
-<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (size == 1){</span>
-<span class="fc" id="L73">            this.first = null;</span>
-<span class="fc" id="L74">            this.last = null;</span>
-<span class="fc" id="L75">            size = 0;</span>
-<span class="fc" id="L76">        }else {</span>
-<span class="fc" id="L77">            this.last = last.getPrevious();</span>
-<span class="fc" id="L78">            last.setNext(null);</span>
-<span class="fc" id="L79">            size--;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (size == 1) {</span>
+<span class="fc" id="L76">            this.first = null;</span>
+<span class="fc" id="L77">            this.last = null;</span>
+<span class="fc" id="L78">            size = 0;</span>
+<span class="fc" id="L79">        } else {</span>
+<span class="fc" id="L80">            this.last = last.getPrevious();</span>
+<span class="fc" id="L81">            last.setNext(null);</span>
+<span class="fc" id="L82">            size--;</span>
         }
-<span class="fc" id="L81">    }</span>
+<span class="fc" id="L84">    }</span>
 
     @Override
     public T first() {
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        return first != null ? first.getItem() : null;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        return first != null ? first.getItem() : null;</span>
     }
 
     @Override
     public T last() {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        return last != null ? last.getItem() : null;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        return last != null ? last.getItem() : null;</span>
     }
 
     @Override
     public int size() {
-<span class="fc" id="L95">        return size;</span>
+<span class="fc" id="L98">        return size;</span>
     }
+
+    // ---------------------------------------------------------------------------------------
+    // segunda sesion practica 2
+    // ---------------------------------------------------------------------------------------
+
+    @Override
+    public T get(int index) {
+<span class="pc bpc" id="L107" title="1 of 4 branches missed.">        if (index &lt; 0 || index &gt;= size)</span>
+<span class="fc" id="L108">            throw new IndexOutOfBoundsException(&quot;indice fuera de rango&quot;);</span>
+
+<span class="fc" id="L110">        LinkedNode&lt;T&gt; aux = first;</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for (int cont = 0; cont &lt; index; cont++) {</span>
+<span class="fc" id="L112">            aux = aux.getNext();</span>
+        }
+<span class="fc" id="L114">        return aux.getItem();</span>
+
+
+        /*  VERSION OPTMIZADA 
+
+            LinkedNode&lt;T&gt; aux;
+            int half = size / 2;
+            if (index &lt;= half) {
+                aux = first;
+                for (int cont = 0; cont &lt; index; cont++) {
+                    aux = aux.getNext();
+                }
+            }
+            else {
+                aux = last;
+                for (int cont = size-1; cont &gt; index; cont--) {
+                    aux = aux.getPrevious();
+                }
+            }
+         */
+    }
+
+    @Override
+    public boolean contains(T value) {
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">        if (value == null) </span>
+<span class="nc" id="L139">            throw new DoubleLinkedQueueException(&quot;Null no esta permitidio&quot;);</span>
+        
+<span class="fc" id="L141">        boolean contains = false;</span>
+<span class="fc" id="L142">        LinkedNode&lt;T&gt; aux = first;</span>
+
+<span class="fc bfc" id="L144" title="All 4 branches covered.">        while (aux != null &amp;&amp; !contains) {</span>
+<span class="fc" id="L145">            contains = value.equals(aux.getItem());</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            if (!contains)</span>
+<span class="fc" id="L147">                aux = aux.getNext();</span>
+        }        
+<span class="fc" id="L149">        return contains;</span>
+    }
+
+    @Override
+    public void remove(T value) {
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (size == 0) </span>
+<span class="fc" id="L155">            throw new DoubleLinkedQueueException(&quot;Error no se puede borrar en una lista vacia&quot;);</span>
+        
+<span class="fc bfc" id="L157" title="All 4 branches covered.">        if (size == 1 &amp;&amp; first.getItem().equals(value)) {  //solo hay 1 elemento en la lista</span>
+<span class="fc" id="L158">            this.first = null;</span>
+<span class="fc" id="L159">            this.last = null;</span>
+<span class="fc" id="L160">            size = 0;</span>
+<span class="fc" id="L161">        }</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        else if (first.getItem().equals(value)) {   //el elemento a borrar es el primero y hay mas de 1 elemento en la lista</span>
+<span class="fc" id="L163">            first = first.getNext();</span>
+<span class="fc" id="L164">            first.setPrevious(null);</span>
+<span class="fc" id="L165">            size--;</span>
+<span class="fc" id="L166">        }</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        else if (last.getItem().equals(value)) {    //el elemento a borrar es el ultimo de la lista</span>
+<span class="fc" id="L168">            last = last.getPrevious();</span>
+<span class="fc" id="L169">            last.setNext(null);</span>
+<span class="fc" id="L170">            size--;</span>
+<span class="fc" id="L171">        }</span>
+        else {  //el elemento a borrar no es ni el primero ni el ultimo de la lista
+<span class="fc" id="L173">            LinkedNode&lt;T&gt; aux = first.getNext(); //empezamos justo en el siguiente elemento porque el elemento no es ni first ni last</span>
+<span class="fc bfc" id="L174" title="All 4 branches covered.">            while (aux != null &amp;&amp; !aux.getItem().equals(value)) {</span>
+<span class="fc" id="L175">                aux = aux.getNext();</span>
+            }
+            //cuando salimos del bucle si aux no es nulo, entonces aux es el elemento a borrar
+<span class="fc bfc" id="L178" title="All 2 branches covered.">            if (aux != null) {</span>
+<span class="fc" id="L179">                aux.getPrevious().setNext(aux.getNext());</span>
+<span class="fc" id="L180">                aux.getNext().setPrevious(aux.getPrevious());</span>
+<span class="fc" id="L181">                size--;</span>
+            }
+            
+        }
+
+<span class="fc" id="L186">    }</span>
+
+    @Override
+    public void sort(Comparator&lt;? super T&gt; comparator) {
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        if (size &lt;= 1) return; // La lista no necesita ordenación si tiene 0 o 1 elemento.</span>
+
+        boolean wasSwapped;
+        do {
+<span class="fc" id="L194">            LinkedNode&lt;T&gt; p = first;</span>
+<span class="fc" id="L195">            wasSwapped = false; // Se reinicia la bandera para esta pasada.</span>
+
+<span class="pc bpc" id="L197" title="1 of 4 branches missed.">            while (p != null &amp;&amp; p.getNext() != null) { // Asegura que p y su siguiente existan.</span>
+
+<span class="fc" id="L199">                LinkedNode&lt;T&gt; q = p.getNext(); // q siempre comienza como el siguiente de p.</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">                while (q != null) { // Mientras q no haya alcanzado el final de la lista.</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">                    if (comparator.compare(p.getItem(), q.getItem()) &gt; 0) {</span>
+                        // Intercambiar valores si están en el orden incorrecto.
+<span class="fc" id="L203">                        T temp = p.getItem();</span>
+<span class="fc" id="L204">                        p.setItem(q.getItem());</span>
+<span class="fc" id="L205">                        q.setItem(temp);</span>
+
+<span class="fc" id="L207">                        wasSwapped = true; // Se realizó un intercambio.</span>
+                    }
+<span class="fc" id="L209">                    q = q.getNext(); // Mover q al siguiente nodo para continuar la comparación.</span>
+                }
+
+<span class="fc" id="L212">                p = p.getNext(); // Después de que q recorre toda la lista, mover p al siguiente nodo.</span>
+            }
+
+
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        } while (wasSwapped); // Repetir mientras se sigan haciendo intercambios.</span>
+<span class="fc" id="L217">    }</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

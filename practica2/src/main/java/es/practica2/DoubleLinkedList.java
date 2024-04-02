@@ -154,7 +154,7 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
         if (size == 0) 
             throw new DoubleLinkedQueueException("Error no se puede borrar en una lista vacia");
         
-        if (size == 1) {  //solo hay 1 elemento en la lista
+        if (size == 1 && first.getItem().equals(value)) {  //solo hay 1 elemento en la lista
             this.first = null;
             this.last = null;
             size = 0;

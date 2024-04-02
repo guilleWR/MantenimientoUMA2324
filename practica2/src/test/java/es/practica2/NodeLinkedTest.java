@@ -1,3 +1,6 @@
+/*  Westerhof Rodríguez Guillermo Alejandro
+    Rueda Cabrera Pedro 
+*/
 package es.practica2;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

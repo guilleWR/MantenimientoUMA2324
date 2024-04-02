@@ -7,6 +7,9 @@ package es.practica2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Comparator;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -520,5 +523,210 @@ public class DoubleLinkedListTest<T> {
         }
     }
     //end tests deleteLast
+
+    //segunda sesion (practica 2)
+    @Nested
+    @DisplayName("Tests dedicados al metodo remove")
+    class RemoveTest {
+        @Test
+        @DisplayName("Intento eliminar un elemento en una lista vacia por lo que devuelve una excepcion")
+        public void Remove_LinkedListVacia_DevuelveDoubleLinkedQueueException(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            //Act & Assert
+            assertThrows(DoubleLinkedQueueException.class, ()->list.remove(value),"Deberia lanzar una Excepcion, puesto que la lista es vacia");
+            
+        }
+
+        @Test
+        @DisplayName("Elimino un value en una lista que solo contiene este elemento")
+        public void Remove_LinkedListConUnSoloElementoQueQuieroEliminar_EliminaElElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            list.append(value);
+            int expectedSize = 0;
+            //Act 
+            list.remove(value);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser cero, ya que hemos eliminado el unico elemento de la lista");
+            assert(!list.contains(value));
+            
+        }
+
+        @Test
+        @DisplayName("Intento eliminar un elemento que no aparece en una lista de un elemento, no elimina ningun elemento")
+        public void Remove_LinkedListConUnSoloElementoQueNoQuieroEliminar_NoEliminaElElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value que no esta en el array";
+            list.append(value);
+            int expectedSize = 1;
+            //Act 
+            list.remove(value2);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 1, ya que no hemos eliminado el elemento");
+            assert(list.contains(value));
+            
+        }
+
+        @Test
+        @DisplayName("Elimino el ultimo elemento de la lista")
+        public void Remove_LinkedListConMasDeUnElementoSiendoELQueQueremosEliminarElPrimero_EliminaElElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 2;
+            //Act 
+            list.remove(value);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
+            assert(!list.contains(value));
+            
+        }
+
+        @Test
+        @DisplayName("Elimino el ultimo elemento de la lista")
+        public void Remove_LinkedListConMasDeUnElementoSiendoELQueQueremosEliminarElUltimo_EliminaElElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 2;
+            //Act 
+            list.remove(value3);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
+            assert(!list.contains(value3));
+            
+        }
+
+        @Test
+        @DisplayName("Elimino uno de los elementos en un nodo no terminal de la lista")
+        public void Remove_LinkedListConMasDeUnElementoQueremosEliminarUnIntermedio_EliminaElElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 2;
+            //Act 
+            list.remove(value2);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
+            assert(!list.contains(value2));
+            
+        }
+
+        @Test
+        @DisplayName("Intento eliminar un elemento en una lista que no lo contiene")
+        public void Remove_LinkedListConMasDeUnElementoQueremosEliminarUnElementoInexistente_NoEliminaNingunElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            String value4 = "no esta en el array";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 3;
+            //Act 
+            list.remove(value4);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 3, ya que no hemos eliminado el elemento de la lista");
+            
+        }
+    }
+
+    //segunda sesion (practica 2)
+    @Nested
+    @DisplayName("Tests dedicados al metodo sort")
+    class sortTest {
+        @Test
+        @DisplayName("Inserto una lista vacia que no se deberia modificar")
+        public void sort_ListaCon0Elementos_NoEsOrdenada(){
+            //Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            int expectedSize = 0;
+            //Act
+            list.sort(alphabeticalComparator);
+            //Assert
+            assertEquals(expectedSize, list.size(),"No debe haber elementos en la lista"); 
+            assertThrows(IndexOutOfBoundsException.class, ()->list.get(0));
+           
+        }
+
+        @Test
+        @DisplayName("Inserto una lista con un solo elemento que no puede ser ordenada")
+        public void sort_ListaCon1Elementos_NoEsOrdenada(){
+            //Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            int expectedSize = 1;
+            list.append("value");
+            //Act
+            list.sort(alphabeticalComparator);
+            //Assert
+            assertEquals(expectedSize, list.size(),"Debe haber un solo elemento en la lista"); 
+            assertEquals("value", list.get(0),"El unico elemento debería ser value");
+            
+           
+        }
+
+        @Test
+        @DisplayName("Inserto una lista desordenada de elementos para ordenar")
+        public void sort_ListaConVariosElementosDesordenados_EsOrdenada(){
+            //Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            list.append("z_Zoro");
+            list.append("e_");
+            list.append("p_");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            //Act
+            list.sort(alphabeticalComparator);
+            //Assert
+            assertEquals("e_", list.get(0),"El primer elemento debería ser e_"); 
+            assertEquals("p_", list.get(1),"El segundo elemento debería ser p_"); 
+            assertEquals("z_Zoro", list.get(2),"El tercer elemento debería ser z_Zoro");
+        }
+
+        @Test
+        @DisplayName("Inserto una lista ya ordenada de elementos por lo que su orden no debe ser modificado")
+        public void sort_ListaConVariosElementosYaOrdenados_NoDebeVariarSuOrden(){
+            //Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            list.append("e_");
+            list.append("p_");
+            list.append("z_Zoro");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            //Act
+            list.sort(alphabeticalComparator);
+            //Assert
+            assertEquals("e_", list.get(0),"El primer elemento debería ser e_"); 
+            assertEquals("p_", list.get(1),"El segundo elemento debería ser p_"); 
+            assertEquals("z_Zoro", list.get(2),"El tercer elemento debería ser z_Zoro");
+        }
+
+        
+
+    }
+
+
 
 }
