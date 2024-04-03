@@ -707,8 +707,8 @@ public class DoubleLinkedListTest<T> {
         }
 
         @Test
-        @DisplayName("Elimino un value en una lista que solo contiene este elemento")
-        public void Remove_LinkedListConUnSoloElementoQueQuieroEliminar_EliminaElElemento(){
+        @DisplayName("Elimino un value en una lista que solo contiene este elemento, por lo que el size debe ser cero")
+        public void Remove_LinkedListConUnSoloElementoQueQuieroEliminar_PoneElSizeACero(){
             //Arrange
             DoubleLinkedList<String> list = new DoubleLinkedList<>();
             String value = "value";
@@ -718,8 +718,37 @@ public class DoubleLinkedListTest<T> {
             list.remove(value);
             //Assert
             assertEquals(expectedSize, list.size(),"El size debe ser cero, ya que hemos eliminado el unico elemento de la lista");
+            
+            
+        }
+
+        @Test
+        @DisplayName("Elimino un value en una lista que solo contiene este elemento, por lo que la lista ya no contiene el elemento")
+        public void Remove_LinkedListConUnSoloElementoQueQuieroEliminar_EliminaElElemento(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            list.append(value);
+            //Act 
+            list.remove(value);
+            //Assert
             assert(!list.contains(value));
             
+        }
+
+        @Test
+        @DisplayName("Intento eliminar un elemento que no aparece en una lista de un elemento, el size sigue siendo 1")
+        public void Remove_LinkedListConUnSoloElementoQueNoQuieroEliminar_NoVariaElSize(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value que no esta en el array";
+            list.append(value);
+            int expectedSize = 1;
+            //Act 
+            list.remove(value2);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 1, ya que no hemos eliminado el elemento");          
         }
 
         @Test
@@ -730,12 +759,29 @@ public class DoubleLinkedListTest<T> {
             String value = "value";
             String value2 = "value que no esta en el array";
             list.append(value);
-            int expectedSize = 1;
             //Act 
             list.remove(value2);
             //Assert
-            assertEquals(expectedSize, list.size(),"El size debe ser 1, ya que no hemos eliminado el elemento");
             assert(list.contains(value));
+            
+        }
+
+        @Test
+        @DisplayName("Elimino el ultimo elemento de la lista, por lo que reduxco el size")
+        public void Remove_LinkedListConMasDeUnElementoSiendoELQueQueremosEliminarElPrimero_ElSizeSeReduce(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 2;
+            //Act 
+            list.remove(value);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
             
         }
 
@@ -750,13 +796,29 @@ public class DoubleLinkedListTest<T> {
             list.append(value);
             list.append(value2);
             list.append(value3);
-            int expectedSize = 2;
             //Act 
             list.remove(value);
             //Assert
-            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
             assert(!list.contains(value));
             
+        }
+
+        @Test
+        @DisplayName("Elimino el ultimo elemento de la lista, por lo que reduce el size")
+        public void Remove_LinkedListConMasDeUnElementoSiendoELQueQueremosEliminarElUltimo_ReduceElSize(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 2;
+            //Act 
+            list.remove(value3);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");        
         }
 
         @Test
@@ -770,12 +832,29 @@ public class DoubleLinkedListTest<T> {
             list.append(value);
             list.append(value2);
             list.append(value3);
-            int expectedSize = 2;
             //Act 
             list.remove(value3);
             //Assert
-            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
             assert(!list.contains(value3));
+            
+        }
+
+        @Test
+        @DisplayName("Elimino uno de los elementos en un nodo no terminal de la lista, por lo que se reduce el size")
+        public void Remove_LinkedListConMasDeUnElementoQueremosEliminarUnIntermedio_ReduceElSize(){
+            //Arrange
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            String value = "value";
+            String value2 = "value2";
+            String value3 = "value3";
+            list.append(value);
+            list.append(value2);
+            list.append(value3);
+            int expectedSize = 2;
+            //Act 
+            list.remove(value2);
+            //Assert
+            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
             
         }
 
@@ -790,11 +869,9 @@ public class DoubleLinkedListTest<T> {
             list.append(value);
             list.append(value2);
             list.append(value3);
-            int expectedSize = 2;
             //Act 
             list.remove(value2);
             //Assert
-            assertEquals(expectedSize, list.size(),"El size debe ser 2, ya que hemos eliminado el elemento de la lista");
             assert(!list.contains(value2));
             
         }
