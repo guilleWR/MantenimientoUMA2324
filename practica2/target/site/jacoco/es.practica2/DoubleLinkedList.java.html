@@ -59,7 +59,7 @@ public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
 <span class="fc" id="L59">            this.first = null;</span>
 <span class="fc" id="L60">            this.last = null;</span>
 <span class="fc" id="L61">            this.size = 0;</span>
-        } else {
+<span class="fc" id="L62">        } else {</span>
 <span class="fc" id="L63">            LinkedNode&lt;T&gt; aux = this.first.getNext();</span>
 <span class="fc" id="L64">            aux.setPrevious(null);</span>
 <span class="fc" id="L65">            this.first = aux;</span>
@@ -76,7 +76,7 @@ public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
 <span class="fc" id="L76">            this.first = null;</span>
 <span class="fc" id="L77">            this.last = null;</span>
 <span class="fc" id="L78">            size = 0;</span>
-        } else {
+<span class="fc" id="L79">        } else {</span>
 <span class="fc" id="L80">            this.last = last.getPrevious();</span>
 <span class="fc" id="L81">            last.setNext(null);</span>
 <span class="fc" id="L82">            size--;</span>
@@ -158,17 +158,17 @@ public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
 <span class="fc" id="L158">            this.first = null;</span>
 <span class="fc" id="L159">            this.last = null;</span>
 <span class="fc" id="L160">            size = 0;</span>
-        }
+<span class="fc" id="L161">        }</span>
 <span class="fc bfc" id="L162" title="All 2 branches covered.">        else if (first.getItem().equals(value)) {   //el elemento a borrar es el primero y hay mas de 1 elemento en la lista</span>
 <span class="fc" id="L163">            first = first.getNext();</span>
 <span class="fc" id="L164">            first.setPrevious(null);</span>
 <span class="fc" id="L165">            size--;</span>
-        }
+<span class="fc" id="L166">        }</span>
 <span class="fc bfc" id="L167" title="All 2 branches covered.">        else if (last.getItem().equals(value)) {    //el elemento a borrar es el ultimo de la lista</span>
 <span class="fc" id="L168">            last = last.getPrevious();</span>
 <span class="fc" id="L169">            last.setNext(null);</span>
 <span class="fc" id="L170">            size--;</span>
-        }
+<span class="fc" id="L171">        }</span>
         else {  //el elemento a borrar no es ni el primero ni el ultimo de la lista
 <span class="fc" id="L173">            LinkedNode&lt;T&gt; aux = first.getNext(); //empezamos justo en el siguiente elemento porque el elemento no es ni first ni last</span>
 <span class="fc bfc" id="L174" title="All 4 branches covered.">            while (aux != null &amp;&amp; !aux.getItem().equals(value)) {</span>
@@ -194,7 +194,7 @@ public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
 <span class="fc" id="L194">            LinkedNode&lt;T&gt; p = first;</span>
 <span class="fc" id="L195">            wasSwapped = false; // Se reinicia la bandera para esta pasada.</span>
 
-<span class="pc bpc" id="L197" title="1 of 4 branches missed.">            while (p != null &amp;&amp; p.getNext() != null) { // Asegura que p y su siguiente existan.</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">            while (p.getNext() != null) { // Asegura que p y su siguiente existan.</span>
 
 <span class="fc" id="L199">                LinkedNode&lt;T&gt; q = p.getNext(); // q siempre comienza como el siguiente de p.</span>
 <span class="fc bfc" id="L200" title="All 2 branches covered.">                while (q != null) { // Mientras q no haya alcanzado el final de la lista.</span>
@@ -210,7 +210,7 @@ public class DoubleLinkedList&lt;T&gt; implements DoubleLinkedQueue&lt;T&gt; {
                 }
 
 <span class="fc" id="L212">                p = p.getNext(); // Después de que q recorre toda la lista, mover p al siguiente nodo.</span>
-<span class="fc" id="L213">            }</span>
+            }
 
 
 <span class="fc bfc" id="L216" title="All 2 branches covered.">        } while (wasSwapped); // Repetir mientras se sigan haciendo intercambios.</span>

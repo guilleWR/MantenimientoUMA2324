@@ -1045,7 +1045,21 @@ public class DoubleLinkedListTest<T> {
             assertEquals("z_Zoro", list.get(2), "El tercer elemento debería seguir siendo z_Zoro");
         }
 
-        
+        @Test
+        @DisplayName("cuando la lista esta ordenada no cambia")
+        public void sort_SoloUltimoElementoaOrdenar_TercerElementoNoCambia(){
+            // Arrange 
+            DoubleLinkedList<String> list = new DoubleLinkedList<>();
+            
+            list.append("p_");
+            list.append("z_Zoro");
+            list.append("e_");
+            Comparator<String> alphabeticalComparator = Comparator.naturalOrder();
+            // Act
+            list.sort(alphabeticalComparator);
+            // Assert
+            assertEquals("z_Zoro", list.get(2), "El tercer elemento debería seguir siendo z_Zoro");
+        }
 
     }
 

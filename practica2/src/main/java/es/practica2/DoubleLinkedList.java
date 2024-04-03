@@ -194,7 +194,7 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
             LinkedNode<T> p = first;
             wasSwapped = false; // Se reinicia la bandera para esta pasada.
 
-            while (p != null && p.getNext() != null) { // Asegura que p y su siguiente existan.
+            while (p.getNext() != null) { // Asegura que p y su siguiente existan.
 
                 LinkedNode<T> q = p.getNext(); // q siempre comienza como el siguiente de p.
                 while (q != null) { // Mientras q no haya alcanzado el final de la lista.
