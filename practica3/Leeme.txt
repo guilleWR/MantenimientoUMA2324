@@ -1,0 +1,5 @@
+Fallos que hemos encontrado en el codigo:
+
+    1. En la clase obtenerNuevaLectura() se lee dos veces la lectura de presion en vez de la de presion y sonido.
+    2. En la claseRonQI2Silver el metodo evaluarApneaSuenyo corregimos la comprobacion del threshold para que el caso limite no este considerado como apnea, a (avgP>=thresholdP && avgS >= thresholdS)
+    3.
