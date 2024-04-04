@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-junit5-mps-uma,es.practica2,DoubleLinkedList,0,404,0,56,0,108,0,40,0,12
+junit5-mps-uma,es.practica2,DoubleLinkedList,0,404,0,56,0,104,0,40,0,12
 junit5-mps-uma,es.practica2,LinkedNode,0,57,0,8,0,17,0,14,0,10
 junit5-mps-uma,es.practica2,DoubleLinkedQueueException,0,4,0,0,0,2,0,1,0,1
