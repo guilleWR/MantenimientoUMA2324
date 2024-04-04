@@ -26,6 +26,25 @@ public class ronQI2Silvertest {
         }
 
 
+		@Test
+		@DisplayName("Si conectarSensorPresion devuelve false inicializar tambien devuelve false")
+		void inicializar_sensorPresionNoConecta_devuelveFalse() {
+			// Arrange
+			Dispositivo dispositivoMock = mock(Dispositivo.class);
+
+			when(dispositivoMock.conectarSensorPresion()).thenReturn(false);
+			
+			RonQI2Silver ronQI2Silver = new RonQI2Silver();
+			ronQI2Silver.anyadirDispositivo(dispositivoMock);
+			
+			// Act
+			boolean resultado = ronQI2Silver.inicializar();
+			
+			// Assert
+			assertFalse(resultado);
+		}
+			
+
     }
     
     
