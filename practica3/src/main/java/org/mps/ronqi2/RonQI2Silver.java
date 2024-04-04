@@ -27,11 +27,12 @@ public class RonQI2Silver extends RonQI2{
         if(lecturasP.size()>numLecturas){
             lecturasP.remove(0); 
         }
-        lecturasS.add(disp.leerSensorSonido());
+        lecturasS.add(disp.leerSensorSonido()); //error encontrado: se añaden en las lecturas de sonido sensoresPresion. y deben ser sensoresSonido
         if(lecturasS.size()>numLecturas){
             lecturasS.remove(0); 
         }
     }
+    
 
     /* 
      * Evalua la apnea del sueno. 
@@ -51,6 +52,8 @@ public class RonQI2Silver extends RonQI2{
                 .average()
                 .orElse(0.0);
         
+
+        //error encontrado: avgS era mayor estricto (>) pero debe ser >=
         if (avgP>=thresholdP && avgS >= thresholdS){ 
             resultado = false;
         }   

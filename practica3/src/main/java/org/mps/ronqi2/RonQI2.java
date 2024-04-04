@@ -24,7 +24,10 @@ public abstract class RonQI2 {
     */
     public abstract void obtenerNuevaLectura();
 
-    public void anyadirDispositivo(Dispositivo d){
+    //posible error encontrado: no se comprueba que d sea distinto de nulo. (si fuese nulo, en inicializar daria un nullPointerException)
+    public void anyadirDispositivo(Dispositivo d) {
+        if (d == null) 
+            throw new IllegalArgumentException("Dispositivo es nulo");
         disp = d;
     }
 
