@@ -26,8 +26,8 @@ import org.mps.dispositivo.Dispositivo;
 
     //posible error encontrado: no se comprueba que d sea distinto de nulo. (si fuese nulo, en inicializar daria un nullPointerException)
     public void anyadirDispositivo(Dispositivo d) {
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        if (d == null) </span>
-<span class="nc" id="L30">            throw new IllegalArgumentException(&quot;Dispositivo es nulo&quot;);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (d == null) </span>
+<span class="fc" id="L30">            throw new IllegalArgumentException(&quot;Dispositivo es nulo&quot;);</span>
 <span class="fc" id="L31">        disp = d;</span>
 <span class="fc" id="L32">    }</span>
 
@@ -35,11 +35,11 @@ import org.mps.dispositivo.Dispositivo;
      * Reconecta el dispositivo cuando esta desconectado.
     */
     public boolean reconectar(){
-<span class="nc" id="L38">        boolean result = false;</span>
-<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (!disp.estaConectado()){</span>
-<span class="nc bnc" id="L40" title="All 4 branches missed.">            result = disp.conectarSensorPresion() &amp;&amp; disp.conectarSensorSonido();</span>
+<span class="fc" id="L38">        boolean result = false;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (!disp.estaConectado()){</span>
+<span class="fc bfc" id="L40" title="All 4 branches covered.">            result = disp.conectarSensorPresion() &amp;&amp; disp.conectarSensorSonido();</span>
         }
-<span class="nc" id="L42">        return result;</span>
+<span class="fc" id="L42">        return result;</span>
     }
 
     /* 
@@ -51,7 +51,7 @@ import org.mps.dispositivo.Dispositivo;
      * Lee y almacena las lecturas de presion y sonido del dispositivo.
     */
     public boolean estaConectado(){
-<span class="nc" id="L54">        return disp.estaConectado();</span>
+<span class="fc" id="L54">        return disp.estaConectado();</span>
     }    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

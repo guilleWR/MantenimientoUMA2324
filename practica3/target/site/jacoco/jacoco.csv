@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Practica3,org.mps.ronqi2,RonQI2,29,35,7,9,6,10,6,7,2,3
-Practica3,org.mps.ronqi2,RonQI2Silver,86,22,8,0,20,7,8,1,4,1
+Practica3,org.mps.ronqi2,RonQI2,0,64,0,16,0,16,0,13,0,5
+Practica3,org.mps.ronqi2,RonQI2Silver,0,108,0,8,0,27,0,9,0,5
 Practica3,org.mps.dispositivo,Dispositivo,3,0,0,0,1,0,1,0,1,0
 Practica3,org.mps.dispositivo,DispositivoSilver,25,0,0,0,11,0,8,0,8,0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.ronqi2.ronQI2SilverTest" time="1.867" tests="0" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest" time="0.01" tests="16" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,4 +59,26 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="64.0"/>
   </properties>
+  <testcase name="evaluarApneaSuenyo_LecturaPresionPorDebajoDelLimite_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="1.596">
+    <system-err><![CDATA[Apr 05, 2024 6:43:40 PM org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
+WARNING: Configuration error: @DisplayName on [void org.mps.ronqi2.ronQI2SilverTest$obtenerNuevaLecturaTest.obtenerNuevaLectura_dispositivoAñadido_lecturasDeSensoresSolicitadasUnaVez()] must be declared with a non-empty value.
+Apr 05, 2024 6:43:40 PM org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
+WARNING: Configuration error: @DisplayName on [void org.mps.ronqi2.ronQI2SilverTest$obtenerNuevaLecturaTest.obtenerNuevaLectura_dispositivoAñadido_lecturasDeSensoresSolicitadasUnaVez()] must be declared with a non-empty value.
+]]></system-err>
+  </testcase>
+  <testcase name="evaluarApneaSuenyo_LecturaPresionPorDebajoDelLimite_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturaPresionPorDebajoDelLimite_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.005"/>
+  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMenoresQueLimites_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMenoresQueLimites_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMenoresQueLimites_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturaSonidoYPresionAlLimiteDelUmbral_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturaSonidoYPresionAlLimiteDelUmbral_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
+  <testcase name="evaluarApneaSuenyo_LecturaSonidoYPresionAlLimiteDelUmbral_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturaSonidoPorDebajoDelLimite_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
+  <testcase name="evaluarApneaSuenyo_LecturaSonidoPorDebajoDelLimite_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
+  <testcase name="evaluarApneaSuenyo_LecturaSonidoPorDebajoDelLimite_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
+  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMayoresQueLimites_DevuelveFalse(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.002"/>
+  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMayoresQueLimites_DevuelveFalse(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
+  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMayoresQueLimites_DevuelveFalse(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
+  <testcase name="anyadirDispositivo_ElDispositivoEsNulo_LanzaIllegalArgumentException" classname="org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest" time="0.007"/>
 </testsuite>
