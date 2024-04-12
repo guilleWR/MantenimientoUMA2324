@@ -24,7 +24,7 @@ import org.mps.dispositivo.Dispositivo;
     */
     public abstract void obtenerNuevaLectura();
 
-    //posible error encontrado: no se comprueba que d sea distinto de nulo. (si fuese nulo, en inicializar daria un nullPointerException)
+    //error encontrado: no se comprueba que d sea distinto de nulo. (si fuese nulo, en inicializar daria un nullPointerException)
     public void anyadirDispositivo(Dispositivo d) {
 <span class="fc bfc" id="L29" title="All 2 branches covered.">        if (d == null) </span>
 <span class="fc" id="L30">            throw new IllegalArgumentException(&quot;Dispositivo es nulo&quot;);</span>

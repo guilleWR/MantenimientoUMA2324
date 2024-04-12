@@ -53,12 +53,12 @@ public class RonQI2Silver extends RonQI2{
 <span class="fc" id="L53">                .orElse(0.0);</span>
         
 
-        //error encontrado: avgS era mayor estricto (&gt;) pero debe ser &gt;=
-<span class="fc bfc" id="L57" title="All 4 branches covered.">        if (avgP&gt;=thresholdP &amp;&amp; avgS &gt;= thresholdS){ </span>
-<span class="fc" id="L58">            resultado = false;</span>
+        //error encontrado: avgP y avgS deben ser mayor o estricto y devolver true (antes era false)
+<span class="fc bfc" id="L57" title="All 4 branches covered.">        if (avgP&gt;thresholdP &amp;&amp; avgS &gt; thresholdS){ </span>
+<span class="fc" id="L58">            resultado = true;</span>
 <span class="fc" id="L59">        }   </span>
         else{
-<span class="fc" id="L61">            resultado = true;</span>
+<span class="fc" id="L61">            resultado = false;</span>
         }
 <span class="fc" id="L63">        return resultado;</span>
     }

@@ -347,9 +347,7 @@ public class ronQI2SilverTest {
     
 
     
-    @Nested
-    @DisplayName("En esta clase realizamos los test de reconectar")
-    static class evaluarApneaSuenyo {
+    
 
        /*
         El método evaluarApneaSuenyo, evalua las últimas 5 lecturas realizadas con obtenerNuevaLectura(), 
@@ -357,6 +355,9 @@ public class ronQI2SilverTest {
         se considera que hay una apnea en proceso. Si hay menos de 5 lecturas también debería realizar la media.
       */ 
       
+
+        //al meterlo en un nest los tests funcionan bien pero no se ve reflejado la cobertura en el reporte jacoco
+        //es por eso que no esta este ultimo metodo en un nest.
         private static Stream<Integer> proporcionarNumLecturas() {
             return Stream.of(4, 5, 10); // Los diferentes números de lecturas que quieres probar
         }
@@ -480,7 +481,7 @@ public class ronQI2SilverTest {
             // Assert
             assertFalse(resultado); // Asumiendo que el resultado esperado es true para estos valores
         }
-    }
+    
 
 
     
