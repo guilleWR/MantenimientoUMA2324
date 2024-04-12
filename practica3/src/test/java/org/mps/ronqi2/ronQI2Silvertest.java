@@ -1,3 +1,7 @@
+/*  Westerhof Rodríguez Guillermo Alejandro
+    Rueda Cabrera Pedro 
+*/
+
 package org.mps.ronqi2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -378,7 +382,7 @@ public class ronQI2SilverTest {
             boolean resultado = ronQI2Silver.evaluarApneaSuenyo();
 
             // Assert
-            assertFalse(resultado); // Asumiendo que el resultado esperado es true para estos valores
+            assertTrue(resultado); // Asumiendo que el resultado esperado es true para estos valores
         }
 
         @ParameterizedTest
@@ -402,7 +406,7 @@ public class ronQI2SilverTest {
             boolean resultado = ronQI2Silver.evaluarApneaSuenyo();
 
             // Assert
-            assertTrue(resultado); // Asumiendo que el resultado esperado es true para estos valores
+            assertFalse(resultado); // Asumiendo que el resultado esperado es true para estos valores
         }
 
         @ParameterizedTest
@@ -426,7 +430,7 @@ public class ronQI2SilverTest {
             boolean resultado = ronQI2Silver.evaluarApneaSuenyo();
 
             // Assert
-            assertTrue(resultado); // Asumiendo que el resultado esperado es true para estos valores
+            assertFalse(resultado); // Asumiendo que el resultado esperado es true para estos valores
         }
 
         @ParameterizedTest
@@ -450,7 +454,7 @@ public class ronQI2SilverTest {
             boolean resultado = ronQI2Silver.evaluarApneaSuenyo();
 
             // Assert
-            assertTrue(resultado); // Asumiendo que el resultado esperado es true para estos valores
+            assertFalse(resultado); // Asumiendo que el resultado esperado es true para estos valores
         }
 
         @ParameterizedTest

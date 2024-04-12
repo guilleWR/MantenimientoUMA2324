@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest" time="0.01" tests="16" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest" time="1.705" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
-    <property name="sun.java.command" value="C:\Users\gawes\AppData\Local\Temp\surefire8988500089541739028\surefirebooter-20240405184339165_3.jar C:\Users\gawes\AppData\Local\Temp\surefire8988500089541739028 2024-04-05T18-43-39_012-jvmRun1 surefire-20240405184339165_1tmp surefire_0-20240405184339165_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\gawes\AppData\Local\Temp\surefire12011248512958891735\surefirebooter-20240412172454332_3.jar C:\Users\gawes\AppData\Local\Temp\surefire12011248512958891735 2024-04-12T17-24-54_153-jvmRun1 surefire-20240412172454332_1tmp surefire_0-20240412172454332_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\git mantenimiento\MantenimientoUMA2324\practica3\target\test-classes;C:\git mantenimiento\MantenimientoUMA2324\practica3\target\classes;C:\Users\gawes\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\gawes\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\gawes\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\gawes\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\gawes\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\gawes\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\gawes\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\gawes\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\gawes\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\gawes\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\gawes\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.9\byte-buddy-agent-1.14.9.jar;C:\Users\gawes\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\gawes\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\gawes\AppData\Local\Temp\surefire8988500089541739028\surefirebooter-20240405184339165_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\gawes\AppData\Local\Temp\surefire12011248512958891735\surefirebooter-20240412172454332_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="20.0.1+9-29"/>
@@ -59,26 +59,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="64.0"/>
   </properties>
-  <testcase name="evaluarApneaSuenyo_LecturaPresionPorDebajoDelLimite_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="1.596">
-    <system-err><![CDATA[Apr 05, 2024 6:43:40 PM org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [void org.mps.ronqi2.ronQI2SilverTest$obtenerNuevaLecturaTest.obtenerNuevaLectura_dispositivoAñadido_lecturasDeSensoresSolicitadasUnaVez()] must be declared with a non-empty value.
-Apr 05, 2024 6:43:40 PM org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [void org.mps.ronqi2.ronQI2SilverTest$obtenerNuevaLecturaTest.obtenerNuevaLectura_dispositivoAñadido_lecturasDeSensoresSolicitadasUnaVez()] must be declared with a non-empty value.
-]]></system-err>
-  </testcase>
-  <testcase name="evaluarApneaSuenyo_LecturaPresionPorDebajoDelLimite_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturaPresionPorDebajoDelLimite_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.005"/>
-  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMenoresQueLimites_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMenoresQueLimites_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMenoresQueLimites_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturaSonidoYPresionAlLimiteDelUmbral_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturaSonidoYPresionAlLimiteDelUmbral_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
-  <testcase name="evaluarApneaSuenyo_LecturaSonidoYPresionAlLimiteDelUmbral_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturaSonidoPorDebajoDelLimite_DevuelveTrue(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
-  <testcase name="evaluarApneaSuenyo_LecturaSonidoPorDebajoDelLimite_DevuelveTrue(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
-  <testcase name="evaluarApneaSuenyo_LecturaSonidoPorDebajoDelLimite_DevuelveTrue(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.004"/>
-  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMayoresQueLimites_DevuelveFalse(int)[1]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.002"/>
-  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMayoresQueLimites_DevuelveFalse(int)[2]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
-  <testcase name="evaluarApneaSuenyo_LecturasDePresionYSonidoMayoresQueLimites_DevuelveFalse(int)[3]" classname="org.mps.ronqi2.ronQI2SilverTest" time="0.003"/>
+  <testcase name="anyadirDispositivo_DispositivoCorrectamenteInicializado_AnyadeCorrectamenteDispositivo" classname="org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest" time="1.669"/>
   <testcase name="anyadirDispositivo_ElDispositivoEsNulo_LanzaIllegalArgumentException" classname="org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest" time="0.007"/>
 </testsuite>

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest
 -------------------------------------------------------------------------------
-Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.705 s -- in org.mps.ronqi2.ronQI2SilverTest$anyadirDispositivoTest
