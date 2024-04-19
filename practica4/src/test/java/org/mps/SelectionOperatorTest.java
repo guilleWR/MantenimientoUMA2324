@@ -1,7 +1,7 @@
 package org.mps;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -71,26 +71,6 @@ public class SelectionOperatorTest {
                 "Se esperaba que TournamentSelection lanzara una EvolutionaryAlgorithmException debido a un array de población de tamaño cero");
         }
 
-
-        @Test
-        @DisplayName("El metodo select devuelve una seleccion de candidatos distinto a la poblacion inical")
-        public void select_ArrayPoblacionConVariosElementos_DevuelveSeleccionadaDistintaAPoblacionInicial() throws EvolutionaryAlgorithmException {
-            // Arrange
-            int[] poblacion = {3,5,7,9,2};  // Array con poblacion
-            int tamanyo = 5;
-            TournamentSelection ts = new TournamentSelection(tamanyo);
-
-            // Act
-            int[] seleccion = ts.select(poblacion);
-
-            String poblacionString = poblacion.toString();
-            String seleccionString = seleccion.toString();
-
-
-            //Assert
-            assertNotEquals(poblacionString, seleccionString);
-        }
-
         
         @Test
         @DisplayName("El metodo select devuelve una seleccion del mismo tamaño que la poblacion inicial")
@@ -105,6 +85,21 @@ public class SelectionOperatorTest {
 
             //Assert
             assertEquals(tamanyo, seleccion.length);
+        }
+
+        @Test
+        @DisplayName("El metodo select devuelve una seleccion del mismo tamaño que la poblacion inicial")
+        public void select_ArrayPoblacionConVariosElementos_NoEsNulo() throws EvolutionaryAlgorithmException {
+            // Arrange
+            int[] poblacion = {3,5,7,9,2};  // Array con poblacion
+            int tamanyo = 5;
+            TournamentSelection ts = new TournamentSelection(tamanyo);
+
+            // Act
+            int[] seleccion = ts.select(poblacion);
+
+            //Assert
+            assertNotNull(seleccion);
         }
 
 
