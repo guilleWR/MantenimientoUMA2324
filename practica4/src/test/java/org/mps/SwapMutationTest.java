@@ -1,7 +1,6 @@
 package org.mps;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -39,9 +38,29 @@ public class SwapMutationTest {
             assertThrows(EvolutionaryAlgorithmException.class, () -> sm.mutate(individual));
         }
 
+        @Test
+        @DisplayName("mutate se ejecuta sin lanzar excepciones para un array válido")
+        public void Mutate_ArrayConVariosElementos_NoLanzaExcepcion() {
+            // Arrange
+            int[] individual = {1, 2, 3, 4, 5};
+            SwapMutation sm = new SwapMutation();
 
+            // Act & Assert
+            assertDoesNotThrow(() -> sm.mutate(individual));
+        }       
+
+        @Test
+        @DisplayName("mutate conserva el tamaño del array original")
+        public void Mutate_ArrayConVariosElementos_ArraySolucionTieneMismaLongitudQueArrayDeEntrada() throws EvolutionaryAlgorithmException {
+            // Arrange
+            int[] individual = {1, 2, 3, 4, 5};
+            SwapMutation sm = new SwapMutation();
+
+            // Act
+            int[] mutated = sm.mutate(individual);
+
+            // Assert
+            assertEquals(individual.length, mutated.length, "El tamaño del array debe permanecer igual despues de la mutacion.");
+        }
     }
-    
-    
-
 }

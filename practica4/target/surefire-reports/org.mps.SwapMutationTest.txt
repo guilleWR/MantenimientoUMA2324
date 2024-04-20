@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: org.mps.SelectionOperatorTest
+Test set: org.mps.SwapMutationTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.132 s -- in org.mps.SelectionOperatorTest
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in org.mps.SwapMutationTest
