@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OnePointCrossover.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mps4</a> &gt; <a href="index.source.html" class="el_package">org.mps.crossover</a> &gt; <span class="el_source">OnePointCrossover.java</span></div><h1>OnePointCrossover.java</h1><pre class="source lang-java linenums">package org.mps.crossover;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OnePointCrossover.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mps4</a> &gt; <a href="index.source.html" class="el_package">org.mps.crossover</a> &gt; <span class="el_source">OnePointCrossover.java</span></div><h1>OnePointCrossover.java</h1><pre class="source lang-java linenums">package org.mps.crossover;
 
 import java.util.Random;
 
@@ -27,29 +27,29 @@ import org.mps.EvolutionaryAlgorithmException;
 public class OnePointCrossover implements CrossoverOperator {
     private Random random;
 
-<span class="nc" id="L30">    public OnePointCrossover() {</span>
-<span class="nc" id="L31">        this.random = new Random();</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L30">    public OnePointCrossover() {</span>
+<span class="fc" id="L31">        this.random = new Random();</span>
+<span class="fc" id="L32">    }</span>
 
     @Override
     public int[][] crossover(int[] parent1, int[] parent2) throws EvolutionaryAlgorithmException {
-<span class="nc" id="L36">        int[][] offspring = null;</span>
-<span class="nc bnc" id="L37" title="All 8 branches missed.">        if (parent1 != null &amp;&amp; parent2 != null &amp;&amp; parent1.length &gt; 0 &amp;&amp; parent1.length == parent2.length) {</span>
-<span class="nc" id="L38">            offspring = new int[2][parent1.length];</span>
-<span class="nc" id="L39">            int crossoverPoint = random.nextInt(parent1.length - 1) + 1; // Punto de cruce aleatorio</span>
+<span class="fc" id="L36">        int[][] offspring = null;</span>
+<span class="pc bpc" id="L37" title="4 of 8 branches missed.">        if (parent1 != null &amp;&amp; parent2 != null &amp;&amp; parent1.length &gt; 0 &amp;&amp; parent1.length == parent2.length) {</span>
+<span class="fc" id="L38">            offspring = new int[2][parent1.length];</span>
+<span class="fc" id="L39">            int crossoverPoint = random.nextInt(parent1.length - 1) + 1; // Punto de cruce aleatorio</span>
             // Realizar el cruce en el punto seleccionado
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            for (int i = 0; i &lt; crossoverPoint; i++) {</span>
-<span class="nc" id="L42">                offspring[0][i] = parent1[i];</span>
-<span class="nc" id="L43">                offspring[1][i] = parent2[i];</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            for (int i = 0; i &lt; crossoverPoint; i++) {</span>
+<span class="fc" id="L42">                offspring[0][i] = parent1[i];</span>
+<span class="fc" id="L43">                offspring[1][i] = parent2[i];</span>
             }
-<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (int i = crossoverPoint; i &lt; parent1.length; i++) {</span>
-<span class="nc" id="L46">                offspring[0][i] = parent2[i];</span>
-<span class="nc" id="L47">                offspring[1][i] = parent1[i];</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">            for (int i = crossoverPoint; i &lt; parent1.length; i++) {</span>
+<span class="fc" id="L46">                offspring[0][i] = parent2[i];</span>
+<span class="fc" id="L47">                offspring[1][i] = parent1[i];</span>
             }
-<span class="nc" id="L49">        } else {</span>
+<span class="fc" id="L49">        } else {</span>
 <span class="nc" id="L50">            throw new EvolutionaryAlgorithmException(&quot;No se ha podido realizar el cruce&quot;);</span>
         }
-<span class="nc" id="L52">        return offspring;</span>
+<span class="fc" id="L52">        return offspring;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
