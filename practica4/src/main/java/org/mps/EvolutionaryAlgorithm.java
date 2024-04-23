@@ -55,9 +55,9 @@ public class EvolutionaryAlgorithm {
 
     //debe ser par!!
     public int[][] optimize(int[][] population) throws EvolutionaryAlgorithmException {
-
-        if (population != null && population.length > 0 && population[0]!=null && population[0].length>0) {
-            // Creamos una nueva población para los descendientes
+        //Hemos añadido la clausula population.length%2 == 0 puesto que la poblacion no puede ser impar.
+        if (population != null && population.length > 0 && population.length%2 == 0  && population[0]!=null && population[0].length>0) {
+            // Creamos una nueva población para los descendientes 
             int[][] offspringPopulation = new int[population.length][population.length];
 
             // Aplicamos operadores de selección y cruce para generar descendientes

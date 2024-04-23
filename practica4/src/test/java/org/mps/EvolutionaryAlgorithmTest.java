@@ -169,7 +169,7 @@ public class EvolutionaryAlgorithmTest {
         public void optimize_ConPoblacionValida_DevuelvePoblacionMismoTamaño() throws EvolutionaryAlgorithmException{
             //Arrange
             int[][] poblacion = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
-            SelectionOperator select = new TournamentSelection(5);
+            SelectionOperator select = new TournamentSelection(3);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -185,7 +185,7 @@ public class EvolutionaryAlgorithmTest {
             //Arrange
             int[][] poblacion = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
             int[][] poblacionResultado = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
-            SelectionOperator select = new TournamentSelection(5);
+            SelectionOperator select = new TournamentSelection(3);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -200,7 +200,7 @@ public class EvolutionaryAlgorithmTest {
         public void optimize_ConSubPoblacionesVacias_DevuelveEvolutionaryAlgorithmException() throws EvolutionaryAlgorithmException{
             //Arrange
             int[][] poblacion = {{}, {}, {}, {}};
-            SelectionOperator select = new TournamentSelection(5);
+            SelectionOperator select = new TournamentSelection(3);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -213,7 +213,7 @@ public class EvolutionaryAlgorithmTest {
         public void optimize_ConPoblacionNulla_DevuelveEvolutionaryAlgorithmException() throws EvolutionaryAlgorithmException{
             //Arrange
             int[][] poblacion = null;
-            SelectionOperator select = new TournamentSelection(5);
+            SelectionOperator select = new TournamentSelection(3);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -226,7 +226,7 @@ public class EvolutionaryAlgorithmTest {
         public void optimize_ConPoblacionVacia_DevuelveEvolutionaryAlgorithmException() throws EvolutionaryAlgorithmException{
             //Arrange
             int[][] poblacion = {};
-            SelectionOperator select = new TournamentSelection(5);
+            SelectionOperator select = new TournamentSelection(3);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -239,7 +239,7 @@ public class EvolutionaryAlgorithmTest {
         public void optimize_ConPrimeraPoblacionNulla_DevuelveEvolutionaryAlgorithmException() throws EvolutionaryAlgorithmException{
             //Arrange
             int[][] poblacion = {null, {}, {}, {}};
-            SelectionOperator select = new TournamentSelection(5);
+            SelectionOperator select = new TournamentSelection(3);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -248,19 +248,18 @@ public class EvolutionaryAlgorithmTest {
         }
 
         @Test
-        @DisplayName("Optimize con poblacion valida usando otro operador selection devuelve una nueva poblacion distinta")
-        public void optimize_ConPoblacionValidaDistintoTournamentSelection_DevuelvePoblacionDistinta() throws EvolutionaryAlgorithmException{
+        @DisplayName("Optimize con poblacion valida usando otro operador selection devuelve EvolutionaryAlgorithmException")
+        public void optimize_ConPoblacionValidaDistintoTournamentSelection_DevuelveEvolutionaryAlgorithmException() throws EvolutionaryAlgorithmException{
             //Arrange
             int[][] poblacion = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
-            int[][] poblacionResultado = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
             SelectionOperator select = new TournamentSelection(10);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
-            //Act
-            poblacionResultado = Algoritmo.optimize(poblacionResultado);
-            //Assert
-            assertNotEquals(poblacion, poblacionResultado);
+            //Act & Assert
+            assertThrows(EvolutionaryAlgorithmException.class, ()->Algoritmo.optimize(poblacion));
+            
+            
         }
 
 
@@ -279,8 +278,8 @@ public class EvolutionaryAlgorithmTest {
         @DisplayName("Optimize con poblacion valida grande devuelve una nueva poblacion del mismo tamaño")
         public void optimize_ConPoblacionValidaGrande_DevuelvePoblacionDelMismoTamaño() throws EvolutionaryAlgorithmException{
             //Arrange
-            int[][] poblacion = generarPoblacionLarga(1000, 1000);
-            SelectionOperator select = new TournamentSelection(5);
+            int[][] poblacion = generarPoblacionLarga(100, 100);
+            SelectionOperator select = new TournamentSelection(100);
             MutationOperator muta = new SwapMutation();
             CrossoverOperator cross = new OnePointCrossover();
             EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
@@ -288,6 +287,20 @@ public class EvolutionaryAlgorithmTest {
             int[][] resultPopulation = Algoritmo.optimize(poblacion);
             //Assert
             assertEquals(poblacion.length, resultPopulation.length);
+        }
+
+        @Test
+        @DisplayName("Optimize con poblacion impar devuelve una nueva poblacion del mismo tamaño")
+        public void optimize_ConPoblacionImpar_DevuelveEvolutionaryAlgorithmException() throws EvolutionaryAlgorithmException{
+            //Arrange
+            int[][] poblacion = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}, {13, 14, 15}};
+            SelectionOperator select = new TournamentSelection(3);
+            MutationOperator muta = new SwapMutation();
+            CrossoverOperator cross = new OnePointCrossover();
+            EvolutionaryAlgorithm Algoritmo = new EvolutionaryAlgorithm(select, muta, cross);
+            //Act & Assert
+            assertThrows(EvolutionaryAlgorithmException.class, ()->Algoritmo.optimize(poblacion));
+           
         }
     }
 
