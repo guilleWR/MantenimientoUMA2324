@@ -34,7 +34,7 @@ public class OnePointCrossover implements CrossoverOperator {
     @Override
     public int[][] crossover(int[] parent1, int[] parent2) throws EvolutionaryAlgorithmException {
 <span class="fc" id="L36">        int[][] offspring = null;</span>
-<span class="pc bpc" id="L37" title="4 of 8 branches missed.">        if (parent1 != null &amp;&amp; parent2 != null &amp;&amp; parent1.length &gt; 0 &amp;&amp; parent1.length == parent2.length) {</span>
+<span class="fc bfc" id="L37" title="All 8 branches covered.">        if (parent1 != null &amp;&amp; parent2 != null &amp;&amp; parent1.length &gt; 0 &amp;&amp; parent1.length == parent2.length) {</span>
 <span class="fc" id="L38">            offspring = new int[2][parent1.length];</span>
 <span class="fc" id="L39">            int crossoverPoint = random.nextInt(parent1.length - 1) + 1; // Punto de cruce aleatorio</span>
             // Realizar el cruce en el punto seleccionado
@@ -47,7 +47,7 @@ public class OnePointCrossover implements CrossoverOperator {
 <span class="fc" id="L47">                offspring[1][i] = parent1[i];</span>
             }
 <span class="fc" id="L49">        } else {</span>
-<span class="nc" id="L50">            throw new EvolutionaryAlgorithmException(&quot;No se ha podido realizar el cruce&quot;);</span>
+<span class="fc" id="L50">            throw new EvolutionaryAlgorithmException(&quot;No se ha podido realizar el cruce&quot;);</span>
         }
 <span class="fc" id="L52">        return offspring;</span>
     }

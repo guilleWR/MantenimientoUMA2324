@@ -1,6 +1,8 @@
+/*  Westerhof Rodríguez Guillermo Alejandro
+    Rueda Cabrera Pedro 
+*/
 package org.mps;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mps.crossover.CrossoverOperator;
 import org.mps.crossover.OnePointCrossover;
 
-public class OnePointCrossoverTert {
+public class CrossoverOperatorTest {
     @Test
     @DisplayName("Inserto parent1 como nulo y me devuelve EvolutionaryAlgorithmException")
     public void crossover_Parent1Nullo_DevuelveEvolutionaryAlgorithmException(){

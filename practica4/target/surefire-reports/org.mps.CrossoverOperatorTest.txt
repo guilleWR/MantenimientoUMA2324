@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: org.mps.SwapMutationTest
+Test set: org.mps.CrossoverOperatorTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in org.mps.SwapMutationTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.182 s -- in org.mps.CrossoverOperatorTest

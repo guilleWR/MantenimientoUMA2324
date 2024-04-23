@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.931" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.349" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\Pedro\AppData\Local\Temp\surefire5968344919700642276\surefirebooter-20240422233531934_3.jar C:\Users\Pedro\AppData\Local\Temp\surefire5968344919700642276 2024-04-22T23-35-31_446-jvmRun1 surefire-20240422233531934_1tmp surefire_0-20240422233531934_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Pedro\AppData\Local\Temp\surefire11528124035206798311\surefirebooter-20240423091439625_3.jar C:\Users\Pedro\AppData\Local\Temp\surefire11528124035206798311 2024-04-23T09-14-39_420-jvmRun1 surefire-20240423091439625_1tmp surefire_0-20240423091439625_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Pedro\Documents\GitHub\mantenimiento\MantenimientoUMA2324\practica4\target\test-classes;C:\Users\Pedro\Documents\GitHub\mantenimiento\MantenimientoUMA2324\practica4\target\classes;C:\Users\Pedro\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\Pedro\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\Pedro\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Pedro\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\Pedro\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Pedro\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\Pedro\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\Pedro\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\Pedro\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\Pedro\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\Pedro\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.9\byte-buddy-agent-1.14.9.jar;C:\Users\Pedro\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Pedro\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Pedro\AppData\Local\Temp\surefire5968344919700642276\surefirebooter-20240422233531934_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Pedro\AppData\Local\Temp\surefire11528124035206798311\surefirebooter-20240423091439625_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.2+13-LTS-58"/>
@@ -58,86 +58,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="optimize_ConPoblacionNulla_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.276">
-    <system-err><![CDATA[abr 22, 2024 11:35:34 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionNulla_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValidaGrande_DevuelvePoblacionMismoTamaño() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValidaDistintoTournamentSelection_DevuelvePoblacionDistinta() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionVacia_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValida_DevuelvePoblacionMismoTamaño() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValida_DevuelvePoblacionDistinta() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPrimeraPoblacionNulla_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConSubPoblacionesVacias_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.getMutationOperator_ConMutationOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.setCrossoverOperator_CambioCrossoverOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.getCrossoverOperator_ConCrossoverOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.getSelectionOperator_ConSelectionOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.setMutationOperator_CambioMutationOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.setSelectionOperator_CambioSelectionOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_SelectionOperatorComoNull_DevuelveEvolutionaryAlgorithmException()] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_CrossoverOperatorComoNull_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_ContructorCorrecto_SeCreaCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_MutationOperatorComoNull_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionNulla_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValidaGrande_DevuelvePoblacionMismoTamaño() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValidaDistintoTournamentSelection_DevuelvePoblacionDistinta() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionVacia_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValida_DevuelvePoblacionMismoTamaño() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPoblacionValida_DevuelvePoblacionDistinta() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConPrimeraPoblacionNulla_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$optimazeTest.optimize_ConSubPoblacionesVacias_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.getMutationOperator_ConMutationOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.setCrossoverOperator_CambioCrossoverOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.getCrossoverOperator_ConCrossoverOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.getSelectionOperator_ConSelectionOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.setMutationOperator_CambioMutationOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$GetYSetTest.setSelectionOperator_CambioSelectionOperator_DevuelveElObjetoCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_SelectionOperatorComoNull_DevuelveEvolutionaryAlgorithmException()] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_CrossoverOperatorComoNull_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_ContructorCorrecto_SeCreaCorrectamente() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-abr 22, 2024 11:35:35 P. M. org.junit.jupiter.engine.descriptor.DisplayNameUtils determineDisplayName
-WARNING: Configuration error: @DisplayName on [public void org.mps.EvolutionaryAlgorithmTest$EvolutionaryAlgorithmConstructorTest.EvolutionaryAlgorithm_MutationOperatorComoNull_DevuelveEvolutionaryAlgorithmException() throws org.mps.EvolutionaryAlgorithmException] must be declared with a non-empty value.
-]]></system-err>
-  </testcase>
-  <testcase name="optimize_ConPoblacionValidaGrande_DevuelvePoblacionMismoTamaño" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.462"/>
-  <testcase name="optimize_ConPoblacionValidaDistintoTournamentSelection_DevuelvePoblacionDistinta" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.008"/>
-  <testcase name="optimize_ConPoblacionVacia_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.008"/>
-  <testcase name="optimize_ConPoblacionValida_DevuelvePoblacionMismoTamaño" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.005"/>
-  <testcase name="optimize_ConPoblacionValida_DevuelvePoblacionDistinta" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.003"/>
-  <testcase name="optimize_ConPrimeraPoblacionNulla_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.007"/>
-  <testcase name="optimize_ConSubPoblacionesVacias_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.006"/>
+  <testcase name="optimize_ConPoblacionNulla_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.015"/>
+  <testcase name="optimize_ConPoblacionValidaDistintoTournamentSelection_DevuelvePoblacionDistinta" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.0"/>
+  <testcase name="optimize_ConPoblacionVacia_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.016"/>
+  <testcase name="optimize_ConPoblacionValida_DevuelvePoblacionMismoTamaño" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.0"/>
+  <testcase name="optimize_ConPoblacionValida_DevuelvePoblacionDistinta" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.0"/>
+  <testcase name="optimize_ConPrimeraPoblacionNulla_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.016"/>
+  <testcase name="optimize_ConPoblacionValidaGrande_DevuelvePoblacionDelMismoTamaño" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.282"/>
+  <testcase name="optimize_ConSubPoblacionesVacias_DevuelveEvolutionaryAlgorithmException" classname="org.mps.EvolutionaryAlgorithmTest$optimazeTest" time="0.002"/>
 </testsuite>
