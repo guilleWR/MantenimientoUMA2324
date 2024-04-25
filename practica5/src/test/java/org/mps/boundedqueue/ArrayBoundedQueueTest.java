@@ -9,6 +9,58 @@ import org.junit.jupiter.api.Test;
 public class ArrayBoundedQueueTest {
     
     @Nested
+    @DisplayName("En esta clase se realizamos los test del constructor ArrayBoundedQueue")
+    class ArrayBoundedQueueTests {
+
+        @Test
+        @DisplayName("Si la capacidad es negativa el constructor lanza una excepcion")
+        public void ArrayBoundedQueue_CapacidadNegativa_LanzaIllegalArgumentException() {
+            // Arrange
+            int capacidad = -1;
+
+            // Act && Assert 
+            assertThatThrownBy(() -> { new ArrayBoundedQueue<>(capacidad); })
+            .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        @DisplayName("Si la capacidad es cero el constructor lanza una excepcion")
+        public void ArrayBoundedQueue_CapacidadCero_LanzaIllegalArgumentException() {
+            // Arrange
+            int capacidad = 0;
+
+            // Act && Assert 
+            assertThatThrownBy(() -> { new ArrayBoundedQueue<>(capacidad); })
+            .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        @DisplayName("Si la capacidad es positiva mayor que cero el no lanza ninguna excepcion")
+        public void ArrayBoundedQueue_CapacidadPositiva_InicializaCorrectamenteArrayBoundedQueue() {
+            // Arrange
+            int capacidad = 5; //capacidad positiva cualquiera
+
+            // Act && Assert 
+            assertThatCode(() -> { new ArrayBoundedQueue<>(capacidad); })
+                .doesNotThrowAnyException();
+        }
+
+        @Test
+        @DisplayName("Si la capacidad es positiva,la cola inicialmente esta vacia (no hay elementos justo a la hora de crear la cola)")
+        public void ArrayBoundedQueue_CapacidadPositiva_NumeroDeElementosEnLaColaEsCero() {
+            // Arrange
+            int capacidad = 5; //capacidad positiva cualquiera
+
+            // Act
+            @SuppressWarnings("rawtypes")
+            ArrayBoundedQueue cola = new ArrayBoundedQueue<>(capacidad);
+
+            // Assert
+            assertThat(cola.isEmpty()).isTrue();
+        }
+    }
+
+    @Nested
     @DisplayName("Clase dedicada a los Test del método put")
     public class putTest{
         @Test
@@ -84,10 +136,54 @@ public class ArrayBoundedQueueTest {
             assertThat(cola).element(0).isEqualTo(values[0]);
             assertThat(cola).element(1).isEqualTo(values[1]);
             assertThat(cola).element(2).isEqualTo(values[2]);
-        }
+        }   
+    }
 
-       
-          
+    @Nested
+    @DisplayName("En esta clase se realizamos los test del metodo get")
+    class GetTests {
+
+        @Test
+        @DisplayName("Si se hace llamada a get con una cola vacia se lanza una excepcion")
+        public void Get_ColaSinElementos_LanzaEmptyBoundedQueueException(){
+            // Arrange
+            int capacidad = 5;
+            @SuppressWarnings("rawtypes")
+            ArrayBoundedQueue cola = new ArrayBoundedQueue<>(capacidad);
+
+            // Act && Assert 
+            assertThatThrownBy(() -> { cola.get(); })
+            .isInstanceOf(EmptyBoundedQueueException.class);
+        }
+        
+        
+        @Test
+        @DisplayName("Si se hace llamada a get con arios elementos en la cola devuelve el primer elemento")
+        @SuppressWarnings("unchecked")
+        public void Get_ColaConVariosElementos_DevuelvePrimerElementoYActualizaCola(){
+            // Arrange
+            int capacidad = 3;
+            @SuppressWarnings("rawtypes")
+            ArrayBoundedQueue cola = new ArrayBoundedQueue<>(capacidad);
+            cola.put(1);
+            cola.put(2);
+            cola.put(3);
+            int expected = 1;
+
+            // Act
+            int result = (int) cola.get();
+
+            // Assert
+            // Ha devuelto el primero elemento de la cola
+            assertThat(result)
+            .isEqualTo(expected);
+
+            //el numero de elementos se ha decrementado en 1
+            assertThat(cola.size()).isEqualTo(capacidad-1);
+
+            //first ha pasado a la siguiente casilla
+            assertThat(cola.getFirst()).isEqualTo(1);   
+        }
     }
 
     @Nested
