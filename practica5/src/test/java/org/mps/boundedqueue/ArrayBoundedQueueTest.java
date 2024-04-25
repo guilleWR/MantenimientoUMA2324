@@ -89,4 +89,66 @@ public class ArrayBoundedQueueTest {
        
           
     }
+
+    @Nested
+    @DisplayName("Clase dedicada a los Test de la clase isFull")
+    public class isFullTest{
+        @Test
+        @DisplayName("isFull con buffer no completo devuelve false")
+        public void isFull_ConBufferNoLleno_DevuelveFalse(){
+            //Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
+            boolean full;
+            //Act
+            full = cola.isFull();
+            //Assert
+            assertThat(full).isFalse();
+        }
+
+        @Test
+        @DisplayName("isFull con buffer completo devuelve true")
+        public void isFull_ConBufferLleno_DevuelveTrue(){
+            //Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
+            boolean full;
+            cola.put(1);
+            cola.put(1);
+            cola.put(1);
+            //Act
+            full = cola.isFull();
+            //Assert
+            assertThat(full).isTrue();
+        }
+    }
+
+    @Nested
+    @DisplayName("Clase dedicada a los Test de la clase isEmpty")
+    public class isEmptyTest{
+        @Test
+        @DisplayName("isEmpty con buffer vacio devuelve true")
+        public void isEmpty_ConBufferVacio_DevuelveTrue(){
+            //Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
+            boolean empty;
+            //Act
+            empty = cola.isEmpty();
+            //Assert
+            assertThat(empty).isTrue();
+        }
+
+        @Test
+        @DisplayName("isEmpty con buffer no vacio devuelve false")
+        public void isEmpty_ConBufferNoVacio_DevuelvecoFalse(){
+            //Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
+            boolean empty;
+            cola.put(1);
+            //Act
+            empty = cola.isEmpty();
+            //Assert
+            assertThat(empty).isFalse();
+        }
+    }
+
+
 }
