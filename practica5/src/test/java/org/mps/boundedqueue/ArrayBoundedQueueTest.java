@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.ReflectionUtils;
 
 public class ArrayBoundedQueueTest {
     
@@ -65,7 +66,7 @@ public class ArrayBoundedQueueTest {
     public class putTest{
         @Test
         @DisplayName("Un put con un value correto añade el valor al buffer")
-        public void put_ConValueCorrecto_AñadeCorrectamenteElValueAlBuffer(){
+        public void Put_ConValueCorrecto_AnyadeCorrectamenteElValueAlBuffer(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
             int value = 1;
@@ -77,7 +78,7 @@ public class ArrayBoundedQueueTest {
 
         @Test
         @DisplayName("Un put con un value correcto actuliza el size")
-        public void put_ConValueCorrecto_ActualizaElSize(){
+        public void Put_ConValueCorrecto_ActualizaElSize(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
             int expectedSize = 1;
@@ -90,7 +91,7 @@ public class ArrayBoundedQueueTest {
 
         @Test
         @DisplayName("Un put con un value correcto no mueve el first")
-        public void put_ConValueCorrecto_NoActualizaElFirst(){
+        public void Put_ConValueCorrecto_NoActualizaElFirst(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
             int value = 1;
@@ -102,7 +103,7 @@ public class ArrayBoundedQueueTest {
 
         @Test
         @DisplayName("Un put con el Buffer completo devuelve FullBoundedQueueException")
-        public void put_ConBufferCompleto_DevuelveFullBoundedQueueException(){
+        public void Put_ConBufferCompleto_DevuelveFullBoundedQueueException(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
             int value = 1;
@@ -115,7 +116,7 @@ public class ArrayBoundedQueueTest {
 
         @Test
         @DisplayName("Un put con un value null devuelve IllegalArgumentException")
-        public void put_ConValueNull_DevuelveIllegalArgumentException(){
+        public void Put_ConValueNull_DevuelveIllegalArgumentException(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
             //Act & Assert
@@ -124,7 +125,7 @@ public class ArrayBoundedQueueTest {
 
         @Test
         @DisplayName("Varios put son añadidos correctamente ")
-        public void put_ConValuesCorrectos_AñadeCorrectamenteLosValuesAlBuffer(){
+        public void Put_ConValuesCorrectos_AnyadeCorrectamenteLosValuesAlBuffer(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
             int[] values = {1,2,3};
@@ -137,6 +138,97 @@ public class ArrayBoundedQueueTest {
             assertThat(cola).element(1).isEqualTo(values[1]);
             assertThat(cola).element(2).isEqualTo(values[2]);
         }   
+
+        @Test
+        @DisplayName("El buffer solamente tiene un elemento y nextFree debera estar en la siguiente posicion del buffer (avanza una casilla)")
+        public void Put_TamanyoBufferEsUno_NextFreeAvanzaUnaCasilla(){
+            // Arrange
+            int capacidad = 4;
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(capacidad);
+            int valor = 10;
+            int expectedPosition = 1;
+
+            // Act
+            cola.put(valor);
+
+            // Assert
+            assertThat(cola.getLast()).isEqualTo(expectedPosition);
+            
+        }   
+
+        @Test
+        @DisplayName("El buffer esta casi lleno (queda uno hueco libre) y nextfree apunta a la ultima posicion del buffer")
+        public void Put_TamanyoBufferEsCapacidadMenosUno_NextFreeEstaEnLaUltimaPoscicionDelBuffer(){
+            //Arrange
+            int capacidad = 4;
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(capacidad);
+            int primero  = 1;
+            int segundo = 2;
+            int tercero  = 3;
+            int expectedPosition = capacidad-1; // Ultima poscicion del buffer
+
+            //Act
+            cola.put(primero);
+            cola.put(segundo);
+            cola.put(tercero);
+
+            //Assert
+            assertThat(cola.getLast()).isEqualTo(expectedPosition);
+        }   
+
+        @Test
+        @DisplayName("Cuando se han introducido tantos valores como capacidad maxima del buffer, el 'puntero' nextFree apunta a la primera posiccion de la casilla")
+        public void Put_NextFreeEstaEnUltimaPosicionDelBuffer_NextFreeAvanzaHaciaLaPrimeraPosicionDelBuffer() {
+            //Arrange
+            int capacidad = 4;
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(capacidad);
+            int primero  = 1;
+            int segundo = 2;
+            int tercero  = 3;
+            int cuarto = 4;
+            int expectedPosition = 0; // Ultima poscicion del buffer
+
+            //Act
+            cola.put(primero);
+            cola.put(segundo);
+            cola.put(tercero);
+            cola.put(cuarto);
+
+            //Assert
+            assertThat(cola.getLast()).isEqualTo(expectedPosition);
+        }
+
+
+        @Test
+        @DisplayName("Cuando el buffer no esta lleno, se hace un get eliminado el primer elemento de la cola y se hace un put de un nuevo elemento no se colocará en el hueco creado por get sino donde esta nextFree")
+        public void Put_BufferIncompletoConHuecoAntesDeElementoFirst_ColocaCorrectamenteSiguienteElementoEnBuffer() {
+            //Arrange
+            int capacidad = 4;
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(capacidad);
+            int primero  = 1;
+            int segundo  = 2;
+            //Act
+            cola.put(primero); //0
+            cola.put(segundo); //1
+            cola.put(33); // 2
+            cola.get();
+            //la posicion 0 deberia tener un null ahora
+            
+            
+            //SE DEBERIA USAR REFLECTIONTESTUTILS PARA ACCEDER AL BUFFER PRIVADO PERO NO PODEMOS???
+
+            //Assert
+            assertThat(cola).element(2).isEqualTo(33);
+            assertThat(cola).element(0).isNull();
+            
+            
+
+            //????????
+        }
+
+
+    
+
     }
 
     @Nested
@@ -168,7 +260,8 @@ public class ArrayBoundedQueueTest {
             cola.put(1);
             cola.put(2);
             cola.put(3);
-            int expected = 1;
+            int expectedValeAfterGet = 1;
+            int expectedIndexFirst = 1;
 
             // Act
             int result = (int) cola.get();
@@ -176,14 +269,116 @@ public class ArrayBoundedQueueTest {
             // Assert
             // Ha devuelto el primero elemento de la cola
             assertThat(result)
-            .isEqualTo(expected);
+            .isEqualTo(expectedValeAfterGet);
 
             //el numero de elementos se ha decrementado en 1
             assertThat(cola.size()).isEqualTo(capacidad-1);
 
             //first ha pasado a la siguiente casilla
-            assertThat(cola.getFirst()).isEqualTo(1);   
+            assertThat(cola.getFirst()).isEqualTo(expectedIndexFirst);   
         }
+
+        @Test
+        @DisplayName(" ")
+        public void Get_BufferCompleto_ActualizaSiguientesPosicionesParaNuevosElementosCorrectamente(){
+            //Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
+            int primero = 1;
+            int segundo = 2;
+            int tercero = 3;
+            cola.put(primero);
+            cola.put(segundo);
+            cola.put(tercero);
+            int nuevoPrimero = 4;
+
+            //Act
+            cola.get();
+            cola.put(nuevoPrimero);
+            //el nextFree estaba en 0 y ahora debe ir a la poscicion 1
+            assertThat(cola.getLast()).isEqualTo(1);
+
+
+            //ESTE TAMBIEN FALLA PORQUE NO PODEMOS ACCEDER BIEN AL BUFFER. ELEMENTS NO ES FIABLE!
+
+            //aqui falla, dice que el del indice 0 es el elemento "segundo" 
+            //y el elemento "nuevoPrimero"supuestamente esta en .element(2) lo cual no tiene sentido (elements no funciona bien??)
+            assertThat(cola).element(0).isEqualTo(4);
+        }   
+
+
+        @Test
+        @DisplayName("El indice del primer elemento pasa de la posicion n-1 (ultima posicion buffer) a la 0 (posicion inicial buffer) Habiendo solo 1 elemento en el buffer ")
+        public void Get_IndiceFirstEnUltimaPosicionDelBufferConSoloUnElemento_SeQuedaEnLaPosicionInicialDelBuffer(){
+            // Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(1);
+            int value = 1;
+            
+            int expectedFirstPosition = 0; // Posicion inicial del buffer
+            cola.put(value);
+            
+            // Act
+            cola.get();
+            
+            // Assert
+            assertThat(cola.getFirst()).isEqualTo(expectedFirstPosition);
+        }
+
+
+        @Test
+        @DisplayName("El indice del primer elemento pasa de la posicion n-1 (ultima posicion buffer) a la 0 (posicion inicial buffer)")
+        public void Get_IndiceFirstEnUltimaPosicionDelBuffer_PasaALaPosicionInicialDelBuffer(){
+            // Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(4);
+            int primero = 1;
+            int segundo = 2;
+            int tercero = 3;
+            int cuarto = 4;
+            int expectedFirstPosition = 0; // Posicion inicial del buffer
+            cola.put(primero);
+            cola.put(segundo);
+            cola.put(tercero);
+            cola.put(cuarto);
+
+            // Act
+            cola.get();
+            cola.get();
+            cola.get();
+            // Ahora el indice de first esta en la posicion n-1. al hacer otro get el buffer 
+            // quedaria vacio y ademas el indice first pasa a la posicion 0
+            cola.get();
+
+            // Assert
+            assertThat(cola.getFirst()).isEqualTo(expectedFirstPosition);
+        }
+
+        @Test
+        @DisplayName("Al hacer N llamadas al metodo get, el indice first avanza el mismo numero N de veces")
+        public void Get_IndiceFirstEnPosicionInicialDelBuffer_PasaALasSiguientesPosicionesDelBuffer(){
+            // Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(4);
+            int primero = 1;
+            int segundo = 2;
+            int tercero = 3;
+            int cuarto = 4;
+            int expectedFirstPosition = 2; // Posicion inicial del buffer
+            cola.put(primero);
+            cola.put(segundo);
+            cola.put(tercero);
+            cola.put(cuarto);
+
+            // Act
+            cola.get();
+            cola.get();
+            //en este momento el indice first ha avanzado dos casillas
+
+            // Assert
+            assertThat(cola.getFirst()).isEqualTo(expectedFirstPosition);
+        }
+
+
+
+
+
     }
 
     @Nested
