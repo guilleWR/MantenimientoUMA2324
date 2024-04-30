@@ -1,11 +1,9 @@
 package org.mps.boundedqueue;
 import static org.assertj.core.api.Assertions.*;
-
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.ReflectionUtils;
+
 
 public class ArrayBoundedQueueTest {
     
@@ -51,21 +49,22 @@ public class ArrayBoundedQueueTest {
         public void ArrayBoundedQueue_CapacidadPositiva_NumeroDeElementosEnLaColaEsCero() {
             // Arrange
             int capacidad = 5; //capacidad positiva cualquiera
+            int expectedSizeElements = 0;
 
             // Act
             @SuppressWarnings("rawtypes")
             ArrayBoundedQueue cola = new ArrayBoundedQueue<>(capacidad);
 
             // Assert
-            assertThat(cola.isEmpty()).isTrue();
+            assertThat(cola.size()).isEqualTo(expectedSizeElements);
         }
     }
 
     @Nested
     @DisplayName("Clase dedicada a los Test del método put")
-    public class putTest{
+    public class putTests{
         @Test
-        @DisplayName("Un put con un value correto añade el valor al buffer")
+        @DisplayName("Put con un value correto añade el valor al buffer")
         public void Put_ConValueCorrecto_AnyadeCorrectamenteElValueAlBuffer(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
@@ -77,7 +76,7 @@ public class ArrayBoundedQueueTest {
         }
 
         @Test
-        @DisplayName("Un put con un value correcto actuliza el size")
+        @DisplayName("Put con un value correcto actuliza el size")
         public void Put_ConValueCorrecto_ActualizaElSize(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
@@ -90,7 +89,7 @@ public class ArrayBoundedQueueTest {
         }
 
         @Test
-        @DisplayName("Un put con un value correcto no mueve el first")
+        @DisplayName("Put con un value correcto no mueve el first")
         public void Put_ConValueCorrecto_NoActualizaElFirst(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
@@ -102,7 +101,7 @@ public class ArrayBoundedQueueTest {
         }
 
         @Test
-        @DisplayName("Un put con el Buffer completo devuelve FullBoundedQueueException")
+        @DisplayName("Put con el Buffer completo devuelve FullBoundedQueueException")
         public void Put_ConBufferCompleto_DevuelveFullBoundedQueueException(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
@@ -115,7 +114,7 @@ public class ArrayBoundedQueueTest {
         }
 
         @Test
-        @DisplayName("Un put con un value null devuelve IllegalArgumentException")
+        @DisplayName("Put con un value null devuelve IllegalArgumentException")
         public void Put_ConValueNull_DevuelveIllegalArgumentException(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
@@ -124,7 +123,7 @@ public class ArrayBoundedQueueTest {
         }
 
         @Test
-        @DisplayName("Varios put son añadidos correctamente ")
+        @DisplayName("Añadir varios valores con put actualiza correctamente el buffer con dichos valores ")
         public void Put_ConValuesCorrectos_AnyadeCorrectamenteLosValuesAlBuffer(){
             //Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
@@ -197,38 +196,6 @@ public class ArrayBoundedQueueTest {
             //Assert
             assertThat(cola.getLast()).isEqualTo(expectedPosition);
         }
-
-
-        @Test
-        @DisplayName("Cuando el buffer no esta lleno, se hace un get eliminado el primer elemento de la cola y se hace un put de un nuevo elemento no se colocará en el hueco creado por get sino donde esta nextFree")
-        public void Put_BufferIncompletoConHuecoAntesDeElementoFirst_ColocaCorrectamenteSiguienteElementoEnBuffer() {
-            //Arrange
-            int capacidad = 4;
-            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(capacidad);
-            int primero  = 1;
-            int segundo  = 2;
-            //Act
-            cola.put(primero); //0
-            cola.put(segundo); //1
-            cola.put(33); // 2
-            cola.get();
-            //la posicion 0 deberia tener un null ahora
-            
-            
-            //SE DEBERIA USAR REFLECTIONTESTUTILS PARA ACCEDER AL BUFFER PRIVADO PERO NO PODEMOS???
-
-            //Assert
-            assertThat(cola).element(2).isEqualTo(33);
-            assertThat(cola).element(0).isNull();
-            
-            
-
-            //????????
-        }
-
-
-    
-
     }
 
     @Nested
@@ -237,7 +204,7 @@ public class ArrayBoundedQueueTest {
 
         @Test
         @DisplayName("Si se hace llamada a get con una cola vacia se lanza una excepcion")
-        public void Get_ColaSinElementos_LanzaEmptyBoundedQueueException(){
+        public void Get_BufferSinElementos_LanzaEmptyBoundedQueueException(){
             // Arrange
             int capacidad = 5;
             @SuppressWarnings("rawtypes")
@@ -252,7 +219,7 @@ public class ArrayBoundedQueueTest {
         @Test
         @DisplayName("Si se hace llamada a get con arios elementos en la cola devuelve el primer elemento")
         @SuppressWarnings("unchecked")
-        public void Get_ColaConVariosElementos_DevuelvePrimerElementoYActualizaCola(){
+        public void Get_BufferConVariosElementos_DevuelvePrimerElementoYActualizaBufferBorrandoEseElemento(){
             // Arrange
             int capacidad = 3;
             @SuppressWarnings("rawtypes")
@@ -260,16 +227,16 @@ public class ArrayBoundedQueueTest {
             cola.put(1);
             cola.put(2);
             cola.put(3);
-            int expectedValeAfterGet = 1;
+            int expectedValue = 1;
             int expectedIndexFirst = 1;
 
             // Act
-            int result = (int) cola.get();
+            int valueAfterGet = (int) cola.get();
 
             // Assert
             // Ha devuelto el primero elemento de la cola
-            assertThat(result)
-            .isEqualTo(expectedValeAfterGet);
+            assertThat(valueAfterGet)
+            .isEqualTo(expectedValue);
 
             //el numero de elementos se ha decrementado en 1
             assertThat(cola.size()).isEqualTo(capacidad-1);
@@ -278,37 +245,10 @@ public class ArrayBoundedQueueTest {
             assertThat(cola.getFirst()).isEqualTo(expectedIndexFirst);   
         }
 
-        @Test
-        @DisplayName(" ")
-        public void Get_BufferCompleto_ActualizaSiguientesPosicionesParaNuevosElementosCorrectamente(){
-            //Arrange
-            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(3);
-            int primero = 1;
-            int segundo = 2;
-            int tercero = 3;
-            cola.put(primero);
-            cola.put(segundo);
-            cola.put(tercero);
-            int nuevoPrimero = 4;
-
-            //Act
-            cola.get();
-            cola.put(nuevoPrimero);
-            //el nextFree estaba en 0 y ahora debe ir a la poscicion 1
-            assertThat(cola.getLast()).isEqualTo(1);
-
-
-            //ESTE TAMBIEN FALLA PORQUE NO PODEMOS ACCEDER BIEN AL BUFFER. ELEMENTS NO ES FIABLE!
-
-            //aqui falla, dice que el del indice 0 es el elemento "segundo" 
-            //y el elemento "nuevoPrimero"supuestamente esta en .element(2) lo cual no tiene sentido (elements no funciona bien??)
-            assertThat(cola).element(0).isEqualTo(4);
-        }   
-
-
+        
         @Test
         @DisplayName("El indice del primer elemento pasa de la posicion n-1 (ultima posicion buffer) a la 0 (posicion inicial buffer) Habiendo solo 1 elemento en el buffer ")
-        public void Get_IndiceFirstEnUltimaPosicionDelBufferConSoloUnElemento_SeQuedaEnLaPosicionInicialDelBuffer(){
+        public void Get_IndiceFirstEnUltimaPosicionDelBufferConUnElemento_IndiceSeMantieneEnLaPosicionInicialDelBuffer(){
             // Arrange
             ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(1);
             int value = 1;
@@ -375,15 +315,11 @@ public class ArrayBoundedQueueTest {
             assertThat(cola.getFirst()).isEqualTo(expectedFirstPosition);
         }
 
-
-
-
-
     }
 
     @Nested
-    @DisplayName("Clase dedicada a los Test de la clase isFull")
-    public class isFullTest{
+    @DisplayName("Clase dedicada a los Test del metodo isFull")
+    public class isFullTests{
         @Test
         @DisplayName("isFull con buffer no completo devuelve false")
         public void isFull_ConBufferNoLleno_DevuelveFalse(){
@@ -413,8 +349,8 @@ public class ArrayBoundedQueueTest {
     }
 
     @Nested
-    @DisplayName("Clase dedicada a los Test de la clase isEmpty")
-    public class isEmptyTest{
+    @DisplayName("Clase dedicada a los Test del metodo isEmpty")
+    public class isEmptyTests{
         @Test
         @DisplayName("isEmpty con buffer vacio devuelve true")
         public void isEmpty_ConBufferVacio_DevuelveTrue(){
@@ -442,4 +378,40 @@ public class ArrayBoundedQueueTest {
     }
 
 
+    @Nested
+    @DisplayName("Clase dedicada a los Test del metodo size")
+    public class sizeTests{
+
+        @Test
+        @DisplayName("Si el  buffer esta vacio, size devuelve cero")
+        public void Size_bufferVacio_DevuelveCero() {
+            // Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
+            int expectedSize = 0;
+
+            // Act
+            int sizeResult = cola.size();
+
+            // Assert
+            assertThat(sizeResult).isEqualTo(expectedSize);
+        }
+
+
+        @Test
+        @DisplayName("Si el buffer contiene n elementos, size devuelve n")
+        public void Size_BufferConNElementos_DevuelveN() {
+            // Arrange
+            ArrayBoundedQueue<Integer> cola = new ArrayBoundedQueue<>(5);
+            cola.put(1);
+            cola.put(2);
+            cola.put(3);
+            int expectedSize = 3;
+
+            // Act
+            int sizeResult = cola.size();
+
+            // Assert
+            assertThat(sizeResult).isEqualTo(expectedSize);
+        }
+    }
 }

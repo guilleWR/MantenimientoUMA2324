@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClubDeportivo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit5-mps-uma</a> &gt; <a href="index.source.html" class="el_package">clubdeportivo</a> &gt; <span class="el_source">ClubDeportivo.java</span></div><h1>ClubDeportivo.java</h1><pre class="source lang-java linenums">package clubdeportivo;
+
+import java.util.StringJoiner;
+
+public class ClubDeportivo {
+	private String nombre;
+	private int ngrupos;
+	private Grupo[] grupos;
+	private static final int TAM = 10;
+
+	public ClubDeportivo(String nombre) throws ClubException {
+<span class="fc" id="L12">		this(nombre, TAM);</span>
+<span class="fc" id="L13">	}</span>
+
+<span class="fc" id="L15">	public ClubDeportivo(String nombre, int n) throws ClubException {</span>
+<span class="fc bfc" id="L16" title="All 4 branches covered.">		if (nombre == null || nombre.trim().isEmpty() ) { //La comparacion nombre == null se ha  agregado gracias a los Test</span>
+<span class="fc" id="L17">			throw new ClubException(&quot;ERROR: el club no puede crearse con un nombre nulo o vacio&quot;);</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">		}else if(n &lt;= 0){</span>
+<span class="fc" id="L19">			throw new ClubException(&quot;ERROR: el club no puede crearse con un número de grupos 0 o negativo&quot;);</span>
+		}
+<span class="fc" id="L21">		this.nombre = nombre;</span>
+<span class="fc" id="L22">		grupos = new Grupo[n];</span>
+<span class="fc" id="L23">	}</span>
+
+	private int buscar(Grupo g) {
+<span class="fc" id="L26">		int i = 0;</span>
+<span class="fc bfc" id="L27" title="All 4 branches covered.">		while (i &lt; ngrupos &amp;&amp; !g.equals(grupos[i])) {</span>
+<span class="fc" id="L28">			i++;</span>
+		}
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if (i == ngrupos) {</span>
+<span class="fc" id="L31">			i = -1;</span>
+		}
+<span class="fc" id="L33">		return i;</span>
+	}
+
+	public void anyadirActividad(String[] datos) throws ClubException {
+		try {
+<span class="fc" id="L38">			int plazas = Integer.parseInt(datos[2]);</span>
+<span class="fc" id="L39">			int matriculados = Integer.parseInt(datos[3]);</span>
+<span class="fc" id="L40">			double tarifa = Double.parseDouble(datos[4]);</span>
+<span class="fc" id="L41">			Grupo g = new Grupo(datos[0], datos[1], plazas, matriculados, tarifa);</span>
+<span class="fc" id="L42">			anyadirActividad(g);</span>
+<span class="fc" id="L43">		} catch (NumberFormatException e) {</span>
+<span class="fc" id="L44">			throw new ClubException(&quot;ERROR: formato de número incorrecto&quot;);</span>
+<span class="fc" id="L45">		}</span>
+<span class="fc" id="L46">	}</span>
+
+	public void anyadirActividad(Grupo g) throws ClubException {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">		if (g==null){ // ADDME: anaydido para comprobar los grupos nulos</span>
+<span class="fc" id="L50">			throw new ClubException(&quot;ERROR: el grupo es nulo&quot;);</span>
+		}
+<span class="fc" id="L52">		int pos = buscar(g);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">		if (pos == -1) { // El grupo es nuevo</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">			if (ngrupos &gt;= grupos.length) { // Hemos añadido este fragmento de codigo para evitar que el array se salga de su capacidad</span>
+<span class="fc" id="L55">				throw new ClubException(&quot;ERROR: no se pueden añadir más grupos, el club ha alcanzado su capacidad máxima.&quot;);</span>
+			}
+<span class="fc" id="L57">			grupos[ngrupos] = g;</span>
+<span class="fc" id="L58">			ngrupos++;</span>
+		} else { // El grupo ya existe --&gt; modificamos las plazas
+<span class="fc" id="L60">			grupos[pos].actualizarPlazas(g.getPlazas());</span>
+		}
+<span class="fc" id="L62">	}</span>
+
+	public int plazasLibres(String actividad) throws ClubException {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		if (actividad == null) {</span>
+<span class="fc" id="L66">			throw new ClubException(&quot;La actividad no puede ser null&quot;);// La actividad no puede ser null</span>
+		}
+<span class="fc" id="L68">		int p = -1;//Inicializo en -1 para que no devulva 0 en caso de que la actividad no exista</span>
+<span class="fc" id="L69">		int i = 0;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		while (i &lt; ngrupos) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">			if (grupos[i].getActividad().equals(actividad)) {</span>
+<span class="fc" id="L72">				p = grupos[i].plazasLibres();</span>
+			}
+<span class="fc" id="L74">			i++;</span>
+		}
+<span class="fc" id="L76">		return p;</span>
+	}
+
+	public void matricular(String actividad, int npersonas) throws ClubException {
+		//falta la comprobacion de no meter un numero de personas cero o negatio
+
+<span class="fc bfc" id="L82" title="All 2 branches covered.">		if (npersonas &lt; 0) {</span>
+<span class="fc" id="L83">			throw new ClubException(&quot;No se pueden matricular un numero negativo de personas&quot;);</span>
+		}
+
+<span class="fc" id="L86">		int plazas = plazasLibres(actividad);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		if (plazas &lt; npersonas) {</span>
+<span class="fc" id="L88">			throw new ClubException(&quot;ERROR: no hay suficientes plazas libres para esa actividad en el club.&quot;);</span>
+		}
+<span class="fc" id="L90">		int i = 0;</span>
+<span class="fc bfc" id="L91" title="All 4 branches covered.">		while (i &lt; ngrupos &amp;&amp; npersonas &gt; 0) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">			if (actividad.equals(grupos[i].getActividad())) {</span>
+<span class="fc" id="L93">				int plazasGrupo = grupos[i].plazasLibres();</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">				if (npersonas &gt;= plazasGrupo) {</span>
+<span class="fc" id="L95">					grupos[i].matricular(plazasGrupo);</span>
+<span class="fc" id="L96">					npersonas -= plazasGrupo;</span>
+				} else {
+<span class="fc" id="L98">					grupos[i].matricular(npersonas);</span>
+				}
+			}
+<span class="fc" id="L101">			i++;</span>
+		}
+<span class="fc" id="L103">	}</span>
+
+	public double ingresos() {
+<span class="fc" id="L106">		double cantidad = 0.0;</span>
+<span class="fc" id="L107">		int i = 0;</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">		while (i &lt; ngrupos) {</span>
+<span class="fc" id="L109">			cantidad += grupos[i].getTarifa() * grupos[i].getMatriculados();</span>
+<span class="fc" id="L110">			i++;</span>
+		}
+<span class="fc" id="L112">		return cantidad;</span>
+	}
+
+	public String toString() {
+<span class="fc" id="L116">		StringJoiner sj = new StringJoiner(&quot;, &quot;, &quot;[ &quot;, &quot; ]&quot;);</span>
+<span class="fc" id="L117">		int i = 0;</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">		while (i &lt; ngrupos) {</span>
+<span class="fc" id="L119">			sj.add(grupos[i].toString());</span>
+<span class="fc" id="L120">			i++;</span>
+		}
+<span class="fc" id="L122">		return nombre + &quot; --&gt; &quot; + sj.toString();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
