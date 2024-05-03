@@ -26,7 +26,7 @@ public class MedicoController {
         return medicoService.getMedico(id);
     }
 
-    @PostMapping(value = "/medico",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
+    @PostMapping(value="/medico", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<?> saveMedico(@RequestBody Medico medico) {
         try{
             medicoService.addMedico(medico);
