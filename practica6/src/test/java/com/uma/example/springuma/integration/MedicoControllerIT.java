@@ -1,3 +1,6 @@
+// Westerhof Rodríguez Guillermo Alejandro
+// Rueda Cabrera Pedro
+
 package com.uma.example.springuma.integration;
 
 import org.junit.jupiter.api.DisplayName;
