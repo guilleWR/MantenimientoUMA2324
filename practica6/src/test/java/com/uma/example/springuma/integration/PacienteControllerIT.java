@@ -38,12 +38,15 @@ public class PacienteControllerIT extends AbstractIntegration {
 
     @BeforeEach
     public void init(){
+
+        //Inicializo el medico
         medico = new Medico();
         medico.setNombre("Legolas");
         medico.setDni("122");
         medico.setEspecialidad("Oncología");
         medico.setId(1);
 
+        //Inicializo el paciente
         paciente = new Paciente();
         paciente.setId(1);
         paciente.setDni("211");
@@ -54,7 +57,7 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
 
     private void savePaciente(Paciente pacientito) throws Exception {
-        //guardamos medico en base de datos (post)
+        //guardamos paciente en el mock
         this.mockMvc.perform(post("/paciente")
         .contentType("application/json")
         .content(objectMapper.writeValueAsString(pacientito)))
@@ -62,7 +65,8 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
 
    
-    private void saveMedico(Medico med) throws JsonProcessingException, Exception {       
+    private void saveMedico(Medico med) throws JsonProcessingException, Exception {      
+        //guardamos el medico en el mock 
         this.mockMvc.perform(post("/medico")
         .contentType("application/json")
         .content(objectMapper.writeValueAsString(med)))
@@ -90,7 +94,7 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
 
     @Test
-    @DisplayName("getMedicoByDni devuelve 404 dado un dni que no existe en la base de datos")
+    @DisplayName("getPaciente devuelve InternalServerError dado un id que no existe en la base de datos")
     public void getPaciente_PacienteSolicitadoPorIdNoExiste_DevuelveInternalServerError() throws Exception { 
         this.mockMvc.perform(get("/paciente/404"))
             .andExpect(status().isInternalServerError());
@@ -115,7 +119,7 @@ public class PacienteControllerIT extends AbstractIntegration {
 
 
     @Test
-    @DisplayName("")
+    @DisplayName("Actualiza el medico de un paciente que ya tenia un medico asignado")
     public void updateMedicoPaciente_PacienteConMedicoYaAsignado_ActualizaElMedicoDePaciente() throws JsonProcessingException, Exception{
         //Hago un post del medico
         saveMedico(medico);
@@ -143,7 +147,7 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
     
     @Test
-    @DisplayName("getMedicoByDni devuelve 404 dado un dni que no existe en la base de datos")
+    @DisplayName("Intenta actualizar el medico de un paciente no existente devuelve InternalServerError")
     public void updateMedicoPaciente_PacienteNoExistente_DevuelveInternalServerError() throws Exception { 
         
         this.mockMvc.perform(put("/paciente")
@@ -153,7 +157,7 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Bo")
     public void DeletePaciente_PacienteYaExistente_EliminaElPaciente() throws Exception{
         //Hago un post del medico
         saveMedico(medico);
