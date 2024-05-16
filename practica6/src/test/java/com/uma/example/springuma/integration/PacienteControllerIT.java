@@ -1,6 +1,5 @@
 package com.uma.example.springuma.integration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -9,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.hamcrest.Matchers.containsString;
+
 import static org.hamcrest.Matchers.hasSize;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -102,7 +101,7 @@ public class PacienteControllerIT extends AbstractIntegration {
 
 
     @Test
-    @DisplayName("Devuelve una lista de pacientes asignados a un determinado medico")
+    @DisplayName("getPacientes devuelve una lista de pacientes asignados a un determinado medico")
     public void getPacientes_AsignadosAUnMedicoPorId_DevuelvelListaPacientes() throws Exception{
         //Hago un post del medico
         saveMedico(medico);
@@ -119,19 +118,22 @@ public class PacienteControllerIT extends AbstractIntegration {
 
 
     @Test
-    @DisplayName("Actualiza el medico de un paciente que ya tenia un medico asignado")
+    @DisplayName("Actualiza correctamente el medico de un paciente que ya tenia un medico asignado")
     public void updateMedicoPaciente_PacienteConMedicoYaAsignado_ActualizaElMedicoDePaciente() throws JsonProcessingException, Exception{
         //Hago un post del medico
         saveMedico(medico);
         //Hago un post del paciente
         savePaciente(paciente);
 
+        //Creo el nuevo Médico
         Medico nuevoMedico = new Medico();
         nuevoMedico.setNombre("elnuevo");
         nuevoMedico.setId(2);
 
+        //Guardo el nuevo Medico
         saveMedico(nuevoMedico);
 
+        //Actualizo el medico
         paciente.setMedico(nuevoMedico);
 
         this.mockMvc.perform(put("/paciente")
@@ -142,14 +144,11 @@ public class PacienteControllerIT extends AbstractIntegration {
         this.mockMvc.perform(get("/paciente/1"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.medico.id").value(nuevoMedico.getId()));
-
-
     }
     
     @Test
     @DisplayName("Intenta actualizar el medico de un paciente no existente devuelve InternalServerError")
     public void updateMedicoPaciente_PacienteNoExistente_DevuelveInternalServerError() throws Exception { 
-        
         this.mockMvc.perform(put("/paciente")
         .contentType("application/json")
         .content(objectMapper.writeValueAsString(paciente)))
@@ -157,7 +156,7 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
 
     @Test
-    @DisplayName("Bo")
+    @DisplayName("deletePaciente de un paciente ya creado elimina el Paciente")
     public void DeletePaciente_PacienteYaExistente_EliminaElPaciente() throws Exception{
         //Hago un post del medico
         saveMedico(medico);
@@ -169,7 +168,7 @@ public class PacienteControllerIT extends AbstractIntegration {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("deletePaciente de un paciente ya existente devuelve InternalServerError")
     public void DeletePaciente_PacienteNoExistente_DevuelveInternalServerError() throws Exception{
         Long id = 404L;
 
