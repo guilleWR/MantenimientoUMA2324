@@ -1,0 +1,4 @@
+2024-05-16 18:09:47.402398+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "MEDICOS" no encontrada
+Table "MEDICOS" not found; SQL statement:
+SELECT * FROM MEDICOS [42102-224]
