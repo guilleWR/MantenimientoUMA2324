@@ -1,3 +1,6 @@
+// Westerhof Rodríguez Guillermo Alejandro
+// Rueda Cabrera Pedro
+
 import { browser } from 'k6/experimental/browser';
 import { check, sleep } from 'k6';
 
@@ -22,13 +25,10 @@ export default async function () {
     try {
         await page.goto("http://localhost:4200");
 
-        // const botonAnyadirCuenta = page.locator('a[name="add"]');
-        // await Promise.all([page.waitForNavigation(), botonAnyadirCuenta.click()]);
-
         sleep(1);
 
+        //Rellenamos el login
         let nombre = page.locator('input[name="nombre"]');
-        //por que por defecto el input tiene un valor 0
         nombre.clear();
         nombre.type("Paco");
 
@@ -38,16 +38,19 @@ export default async function () {
 
         sleep(2);
 
+        //Pulsamos el boton login
         let submitButton = page.locator('button[name="login"]');
         await Promise.all([page.waitForNavigation(), submitButton.click()]);
 
         sleep(2);
 
+        //Pulsamos el boton añadir paciente
         const addButton = page.locator('button[name="add"]');
         await Promise.all([page.waitForNavigation(), addButton.click()]);
 
         sleep(2);
 
+        //Rellenamos los datos del paciente
         nombre = page.locator('input[name="nombre"]');
         nombre.clear();
         nombre.type("Eustaquio");
@@ -66,6 +69,7 @@ export default async function () {
 
         sleep(2);
 
+        //Pulsamos el boton create
         const submit2Button = page.locator('button[type="submit"]');
         await Promise.all([page.waitForNavigation(), submit2Button.click()]);
 
@@ -75,6 +79,7 @@ export default async function () {
         let len = page.$$("table tbody tr").length;
 
         check(page, {
+            //Comprobamos que aparexca en la tabla el nuevo paciente
             'Nombre Paciente': p =>  p.$$("table tbody tr")[len - 1]
                 .$('td[name="nombre"]').textContent().includes("Eustaquio"),
 

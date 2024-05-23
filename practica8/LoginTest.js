@@ -1,3 +1,6 @@
+// Westerhof Rodríguez Guillermo Alejandro
+// Rueda Cabrera Pedro
+
 import { browser } from 'k6/experimental/browser';
 import { check, sleep } from 'k6';
 
@@ -22,26 +25,25 @@ export default async function () {
     try {
         await page.goto("http://localhost:4200");
 
-        // const botonAnyadirCuenta = page.locator('a[name="add"]');
-        // await Promise.all([page.waitForNavigation(), botonAnyadirCuenta.click()]);
-
         sleep(1);
 
+        //Rellenamos el login
         const nombre = page.locator('input[name="nombre"]');
-        //por que por defecto el input tiene un valor 0
-        nombre.clear();
+        nombre.clear();//por que por defecto el input podria tener un valor puesto
         nombre.type("Paco");
 
         const dni = page.locator('input[name="DNI"]');
         dni.clear();
         dni.type("122");
 
-        sleep(3);
+        sleep(2);
 
+        //Pulsamos el boton login
         const submitButton = page.locator('button[name="login"]');
         await Promise.all([page.waitForNavigation(), submitButton.click()]);
 
         check(page, { 
+            //Comprobamos que carge la pagina Listado paciente
             'Listado paciente': (h2)=> page.locator('h2').textContent() === 'Listado de pacientes',
          });
 
